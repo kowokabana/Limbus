@@ -5,14 +5,14 @@ using Limbus.Control;
 
 namespace Limbus.Mosquito
 {
-	public class LinearMock : IControllable<double>, ITimed
+	public class LinearMosquito : IControllable<double>, ITimed
 	{
 		public event Action<Timestamped<double>> Receive;
 		private Timestamped<double> Setpoint;
 		private TimeSpaned<double> Gradient;
 		private TimeSpan duration;
 
-		public LinearMock (TimeSpaned<double> gradient)
+		public LinearMosquito (TimeSpaned<double> gradient)
 		{
 			this.Gradient = gradient;
 		}

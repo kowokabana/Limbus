@@ -48,6 +48,7 @@
     <Compile Include="ITickable.cs" />
     <Compile Include="ITimed.cs" />
     <Compile Include="TimeSpaned.cs" />
+    <Compile Include="TimeSpanExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

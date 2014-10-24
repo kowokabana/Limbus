@@ -59,15 +59,18 @@ namespace Limbus.Plotter
 			};
 
 			tmp.Series.Add(ls);
-		
+					
 			var clock = new Clock (new DateTimeOffset(1,1,1,0,10,0, TimeSpan.Zero));
-			var mock = new LinearMock (new TimeSpaned<double>(TimeSpan.FromMinutes (1), 2));
+			var mock = new LinearMosquito (new TimeSpaned<double>(2, 1.min()));
 			clock.Subscribe (mock);
+
 			mock.Receive += (ts) => ls.Points.Add (DateTimeAxis.CreateDataPoint(ts.Timestamp.DateTime, ts.Value));
 			mock.Send(Timestamped.Create<double>(20, new DateTimeOffset(1,1,1,0,25,0, TimeSpan.Zero)));
+
 			for (int i = 0; i <= 20; i++) // t = 10 -> t = 30
 			{
 				clock.Tick (TimeSpan.FromMinutes (1));
+				System.Threading.Thread.Sleep (1);
 			}
 
 			var plotView = new OxyPlot.GtkSharp.PlotView { Model = tmp };
