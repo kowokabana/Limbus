@@ -1,4 +1,4 @@
-limbus
+Limbus
 ======
 
-A free controller framework to control clusters of small power producers
+An open control system framework to mastermind big swarms of mosquitos.
