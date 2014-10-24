@@ -50,7 +50,7 @@ namespace Limbus.Plotter
 				Title = "Line1",
 				DataFieldX = "X", 
 				DataFieldY = "Y", 
-				Color = OxyColors.DarkRed,
+				Color = OxyColors.Blue,
 				MarkerType = MarkerType.Circle,
 				MarkerSize = 3,
 				MarkerStroke = OxyColors.Black,
