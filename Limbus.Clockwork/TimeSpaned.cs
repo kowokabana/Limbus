@@ -7,10 +7,18 @@ namespace Limbus.Clockwork
 		public TimeSpan Duration { get; private set; }
 		public T Value { get; private set; }
 
-		public TimeSpaned (T val, TimeSpan duration)
+		public TimeSpaned (T v, TimeSpan duration)
 		{
 			this.Duration = duration;
-			this.Value = val;
+			this.Value = v;
+		}
+	}
+
+	public static class TimeSpaned
+	{
+		public static TimeSpaned<T> Create<T>(T v, TimeSpan duration)
+		{
+			return new TimeSpaned<T> (v, duration);
 		}
 	}
 }

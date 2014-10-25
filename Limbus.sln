@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Lab", "Limbus.Lab\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Plot", "Limbus.Plot\Limbus.Plot.csproj", "{132F6813-4862-45A8-800C-A6CA561CA3EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Mosquito.Test", "Limbus.Mosquito.Test\Limbus.Mosquito.Test.csproj", "{CD89C797-9C82-40FE-9408-272E38FCB393}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Debug|x86.Build.0 = Debug|x86
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Release|x86.ActiveCfg = Release|x86
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Release|x86.Build.0 = Release|x86
+		{CD89C797-9C82-40FE-9408-272E38FCB393}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD89C797-9C82-40FE-9408-272E38FCB393}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD89C797-9C82-40FE-9408-272E38FCB393}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD89C797-9C82-40FE-9408-272E38FCB393}.Release|x86.Build.0 = Release|Any CPU
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Debug|x86.Build.0 = Debug|Any CPU
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Release|x86.ActiveCfg = Release|Any CPU

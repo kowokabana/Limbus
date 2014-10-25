@@ -4,7 +4,7 @@ namespace Limbus.Clockwork
 {
 	public interface ITimed
 	{
-		void Set (DateTimeOffset now);
+		void Set (DateTimeOffset time);
 	}
 
 	public static class TimedExtensions

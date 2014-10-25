@@ -16,7 +16,7 @@ namespace Limbus.Plot
 				{ 
 					Position = AxisPosition.Left,
 					Minimum = -1,
-					Maximum = 30,
+					//Maximum = 30,
 					MajorGridlineStyle = LineStyle.Solid,
 					MinorGridlineStyle = LineStyle.Dot, 
 					TickStyle = TickStyle.Outside 
@@ -26,7 +26,7 @@ namespace Limbus.Plot
 				{
 					Position = AxisPosition.Bottom,
 					Minimum = DateTimeAxis.ToDouble(tMin.UtcDateTime),
-					Maximum = DateTimeAxis.ToDouble(tMax.UtcDateTime.AddMinutes(2)),
+					//Maximum = DateTimeAxis.ToDouble(tMax.UtcDateTime.AddMinutes(2)),
 					IntervalType = DateTimeIntervalType.Minutes,
 					MajorGridlineStyle = LineStyle.Solid,
 					Angle = 45,

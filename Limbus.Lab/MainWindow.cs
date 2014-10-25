@@ -1,15 +1,48 @@
 ﻿using System;
+using System.Reactive;
+using System.Threading;
+using System.Threading.Tasks;
 using Gtk;
-using OxyPlot.GtkSharp;
+using Limbus.Clockwork;
+using Limbus.Mosquito;
+using Limbus.Plot;
 using OxyPlot;
+using OxyPlot.Axes;
 
 public partial class MainWindow: Gtk.Window
 {
-	public MainWindow (PlotModel plotModel) : base (Gtk.WindowType.Toplevel)
+	private LinearMosquito mock;
+
+	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
 
-		var plotView = new OxyPlot.GtkSharp.PlotView { Model = plotModel };
+		mock = new LinearMosquito (TimeSpaned.Create(2.0, 1.min()));
+		var tStart = DateTimeOffset.UtcNow;
+		//var tSetpoint = tStart.Add (15.min ());
+		//mock.Send(Timestamped.Create(20.0, tSetpoint));
+
+		//var tMax = tSetpoint.Add (2.min ());
+
+		var clock = new Clock (tStart);
+		clock.Subscribe (mock);
+
+		var timePlot = new TimePlot ("Mosquito Population", tStart, DateTimeOffset.UtcNow, 0, 30);
+
+		mock.Receive += (ts) => {
+			timePlot.Line.Points.Add (DateTimeAxis.CreateDataPoint (ts.Timestamp.DateTime, ts.Value));
+			timePlot.InvalidatePlot (true);
+		};
+
+		Task.Run (() => {
+			while(true)
+			{
+				clock.Tick (1.min());
+				Thread.Sleep (1000);
+			}
+		});
+
+		var plotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
 
 		plotView.SetSizeRequest(1000, 600);
 		plotView.Visible = true;
@@ -17,8 +50,6 @@ public partial class MainWindow: Gtk.Window
 		this.SetSizeRequest(1000, 600);
 
 		hbxMain.Add (plotView);
-
-		//this.Add(plotView);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -30,5 +61,6 @@ public partial class MainWindow: Gtk.Window
 	protected void btnSendClicked (object sender, EventArgs e)
 	{
 		var setpoint = double.Parse (edSetpoint.Text);
+		mock.Send(Timestamped.Create(setpoint, DateTimeOffset.UtcNow.Add(10.min())));
 	}
 }
