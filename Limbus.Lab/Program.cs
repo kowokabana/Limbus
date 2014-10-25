@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Gtk;
 using Limbus.Clockwork;
 using Limbus.Mosquito;
-using Limbus.Plotter;
+using Limbus.Plot;
 using OxyPlot;
 using OxyPlot.Axes;
 
@@ -16,8 +16,6 @@ namespace Limbus.Lab
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-
-			MainWindow win = new MainWindow ();
 
 			var tMin = new DateTimeOffset (1, 1, 1, 0, 10, 0, TimeSpan.Zero);
 			var tMax = new DateTimeOffset (1, 1, 1, 0, 25, 0, TimeSpan.Zero);
@@ -36,20 +34,13 @@ namespace Limbus.Lab
 			mock.Send(Timestamped.Create<double>(20, tMax));
 
 			Task.Run (() => {
-				for (int i = 0; i <= 20; i++) { // t = 10 -> t = 30
-					clock.Tick (TimeSpan.FromMinutes (1));
+				for (int i = 0; i <= 25; i++) { // t = 10 -> t = 30
+					clock.Tick (1.min());
 					Thread.Sleep (500);
 				}
 			});
 
-			var plotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
-
-			plotView.SetSizeRequest(400, 400);
-			plotView.Visible = true;
-
-			win.SetSizeRequest(600, 600);
-			win.Add(plotView);
-
+			MainWindow win = new MainWindow (timePlot);
 			win.Show ();
 			Application.Run ();
 		}

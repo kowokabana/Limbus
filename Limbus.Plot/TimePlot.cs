@@ -3,7 +3,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace Limbus.Plotter
+namespace Limbus.Plot
 {
 	public class TimePlot : PlotModel
 	{
