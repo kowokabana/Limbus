@@ -7,7 +7,7 @@ namespace Limbus.Mosquito.Test
 	public class LinearMosquitoTest
 	{
 		[Test]
-		public LinearMosquitoTest ()
+		public void LinearTest ()
 		{
 			//var tMin = new DateTimeOffset (1, 1, 1, 0, 10, 0, TimeSpan.Zero);
 			//var tMax = new DateTimeOffset (1, 1, 1, 0, 25, 0, TimeSpan.Zero);
