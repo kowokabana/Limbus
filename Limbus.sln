@@ -5,9 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Mosquito", "Limbus.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Control", "Limbus.Control\Limbus.Control.csproj", "{DE7F7ED1-59E3-4FED-95C4-0949AE702105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Plotter", "Limbus.Plotter\Limbus.Plotter.csproj", "{5350308F-6713-48E4-A529-19DB00AE36D8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Clockwork", "Limbus.Clockwork\Limbus.Clockwork.csproj", "{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Lab", "Limbus.Lab\Limbus.Lab.csproj", "{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Plot", "Limbus.Plot\Limbus.Plot.csproj", "{132F6813-4862-45A8-800C-A6CA561CA3EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,14 +17,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Release|x86.Build.0 = Release|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Debug|x86.Build.0 = Debug|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.ActiveCfg = Release|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.Build.0 = Release|Any CPU
-		{5350308F-6713-48E4-A529-19DB00AE36D8}.Debug|x86.ActiveCfg = Debug|x86
-		{5350308F-6713-48E4-A529-19DB00AE36D8}.Debug|x86.Build.0 = Debug|x86
-		{5350308F-6713-48E4-A529-19DB00AE36D8}.Release|x86.ActiveCfg = Release|x86
-		{5350308F-6713-48E4-A529-19DB00AE36D8}.Release|x86.Build.0 = Release|x86
+		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Debug|x86.ActiveCfg = Debug|x86
+		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Debug|x86.Build.0 = Debug|x86
+		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Release|x86.ActiveCfg = Release|x86
+		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Release|x86.Build.0 = Release|x86
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Debug|x86.Build.0 = Debug|Any CPU
 		{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}.Release|x86.ActiveCfg = Release|Any CPU
@@ -33,6 +39,6 @@ Global
 		{DE7F7ED1-59E3-4FED-95C4-0949AE702105}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Limbus.Plotter\Limbus.Plotter.csproj
+		StartupItem = Limbus.Lab\Limbus.Lab.csproj
 	EndGlobalSection
 EndGlobal
