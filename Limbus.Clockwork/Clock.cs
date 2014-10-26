@@ -5,7 +5,7 @@ namespace Limbus.Clockwork
 {
 	public class Clock : ITimed
 	{
-		public DateTimeOffset Time { get; set; }
+		public DateTimeOffset Time { get; private set; }
 		private event Action<DateTimeOffset> Reset;
 
 		public Clock (DateTimeOffset time)

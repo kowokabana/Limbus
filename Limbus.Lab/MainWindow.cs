@@ -12,6 +12,7 @@ using OxyPlot.Axes;
 public partial class MainWindow: Gtk.Window
 {
 	private LinearMosquito mock;
+	private Clock clock;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
@@ -19,12 +20,8 @@ public partial class MainWindow: Gtk.Window
 
 		mock = new LinearMosquito (TimeSpaned.Create(2.0, 1.min()));
 		var tStart = DateTimeOffset.UtcNow;
-		//var tSetpoint = tStart.Add (15.min ());
-		//mock.Send(Timestamped.Create(20.0, tSetpoint));
 
-		//var tMax = tSetpoint.Add (2.min ());
-
-		var clock = new Clock (tStart);
+		clock = new Clock (tStart);
 		clock.Subscribe (mock);
 
 		var timePlot = new TimePlot ("Mosquito Population", tStart, DateTimeOffset.UtcNow, 0, 30);
@@ -61,6 +58,6 @@ public partial class MainWindow: Gtk.Window
 	protected void btnSendClicked (object sender, EventArgs e)
 	{
 		var setpoint = double.Parse (edSetpoint.Text);
-		mock.Send(Timestamped.Create(setpoint, DateTimeOffset.UtcNow.Add(10.min())));
+		mock.Send(Timestamped.Create(setpoint, DateTimeOffset.MinValue));
 	}
 }

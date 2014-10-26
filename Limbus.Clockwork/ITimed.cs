@@ -6,14 +6,5 @@ namespace Limbus.Clockwork
 	{
 		void Set (DateTimeOffset time);
 	}
-
-	public static class TimedExtensions
-	{
-		public static ITimed TimedBy(this ITimed src, Clock clock)
-		{
-			clock.Subscribe (src);
-			return src;
-		}
-	}
 }
 

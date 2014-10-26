@@ -6,59 +6,57 @@ using System.Collections.Generic;
 
 namespace Limbus.Mosquito
 {
+	/// <summary>
+	/// A thread-safe mosquito machine with a linear-behaving engine
+	/// </summary>
 	public class LinearMosquito : IControllable<double>, ITimed
 	{
 		public event Action<Timestamped<double>> Receive;
 
 		public Timestamped<double> Setpoint { get; private set; }
 		public TimeSpaned<double> Gradient { get; private set; }
-		public TimeSpan Duration { get; private set; }
-		public DateTimeOffset Time { get; private set; }
 
 		private object mutex = new object();
+		private DateTimeOffset time = DateTimeOffset.UtcNow;
+		private double actual = 0;
 
 		public LinearMosquito (TimeSpaned<double> gradient)
 		{
 			if (gradient.Value <= 0) throw new ArgumentOutOfRangeException ("gradient");
 
-			this.Setpoint = Timestamped.Create<double> (0, DateTimeOffset.UtcNow);
+			this.Setpoint = Timestamped.Create(0.0, DateTimeOffset.UtcNow);
 			this.Gradient = gradient;
-			this.Time = DateTimeOffset.UtcNow;
-			this.Duration = TimeSpan.Zero;
 		}
 
-		public void Send (Timestamped<double> setpoint)	
+		public void Send (Timestamped<double> setpoint)
 		{
 			lock (mutex)
 			{
-				this.Duration = GetDurationTo (setpoint.Value);
-				this.Setpoint = setpoint; // changing this.Setpoint influences GetActual()
-			}
-		}
+				this.actual = GetActual ();
+				var earliestFinishTime = this.time.Add (actual.TimeTo(setpoint.Value, Gradient));
 
-		private TimeSpan GetDurationTo(double v)
-		{
-			var dv = Math.Abs (v - GetActual ());
-			return TimeSpan.FromTicks((long)((dv / Gradient.Value) * Gradient.Duration.Ticks));
+				this.Setpoint = setpoint.Timestamp > earliestFinishTime ?
+					setpoint : Timestamped.Create(setpoint.Value, earliestFinishTime);
+			}
 		}
 
 		private double GetActual()
 		{
-			if (Time >= Setpoint.Timestamp) return Setpoint.Value;
-			var setpointStart = Setpoint.Timestamp - Duration;
-			if (Time < setpointStart) return 0.0;
+			if (time >= Setpoint.Timestamp) return Setpoint.Value;
+			var engineStartTime = Setpoint.Timestamp - this.actual.TimeTo(Setpoint.Value, Gradient);
+			if (time < engineStartTime) return 0.0;
 
-			var timeSinceStart = Time - setpointStart;
-			double setpointNow = (timeSinceStart.TotalSeconds / Gradient.Duration.TotalSeconds) * Gradient.Value;
-			return setpointNow;
+			var timeSinceStart = time - engineStartTime;
+			var delta = (timeSinceStart.TotalSeconds / Gradient.Duration.TotalSeconds) * Gradient.Value;
+			return Setpoint.Value > this.actual ? this.actual + delta : this.actual - delta;
 		}
 
 		public void Set(DateTimeOffset time)
 		{
 			lock (mutex)
 			{
-				Time = time;
-				if (Receive != null) Receive(Timestamped.Create<double>(GetActual(), Time));
+				this.time = time;
+				if (Receive != null) Receive(Timestamped.Create<double>(GetActual(), time));
 			}
 		}
 	}
