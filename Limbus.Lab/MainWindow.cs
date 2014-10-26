@@ -41,12 +41,12 @@ public partial class MainWindow: Gtk.Window
 
 		var plotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
 
-		plotView.SetSizeRequest(1000, 600);
+		plotView.SetSizeRequest(1000, 200);
 		plotView.Visible = true;
 
 		this.SetSizeRequest(1000, 600);
 
-		hbxMain.Add (plotView);
+		vbxPlot.Add (plotView);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -55,9 +55,13 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-	protected void btnSendClicked (object sender, EventArgs e)
+	protected void vScaleSetpoint_Changed (object sender, EventArgs e)
 	{
-		var setpoint = double.Parse (edSetpoint.Text);
-		mock.Send(Timestamped.Create(setpoint, DateTimeOffset.MinValue));
+		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
+	}
+
+	protected void vScaleDeadTime_Changed (object sender, EventArgs e)
+	{
+		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}
 }
