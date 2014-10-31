@@ -8,11 +8,13 @@ using Limbus.Mosquito;
 using Limbus.Plot;
 using OxyPlot;
 using OxyPlot.Axes;
+using System.Linq;
 
 public partial class MainWindow: Gtk.Window
 {
 	private LinearMosquito mock;
 	private Clock clock;
+	private int speed = 1000;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
@@ -24,10 +26,11 @@ public partial class MainWindow: Gtk.Window
 		clock = new Clock (tStart);
 		clock.Subscribe (mock);
 
-		var timePlot = new TimePlot ("Mosquito Population", tStart, DateTimeOffset.UtcNow, 0, 30);
+		var timePlot = new TimePlot ("Mosquito Population", 50, tStart);
 
+		// this stuff runs in another task
 		mock.Receive += (ts) => {
-			timePlot.Line.Points.Add (DateTimeAxis.CreateDataPoint (ts.Timestamp.DateTime, ts.Value));
+			timePlot.AddPoint(ts);
 			timePlot.InvalidatePlot (true);
 		};
 
@@ -35,7 +38,7 @@ public partial class MainWindow: Gtk.Window
 			while(true)
 			{
 				clock.Tick (1.min());
-				Thread.Sleep (1000);
+				Thread.Sleep (speed);
 			}
 		});
 
@@ -60,7 +63,12 @@ public partial class MainWindow: Gtk.Window
 		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}
 
-	protected void vScaleDeadTime_Changed (object sender, EventArgs e)
+	protected void vScaleSpeed_Changed (object sender, EventArgs e)
+	{
+		this.speed = (int)vscaleSpeed.Value;
+	}
+
+	protected void vscaleDeadTime_Changed (object sender, EventArgs e)
 	{
 		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}

@@ -20,6 +20,24 @@ public partial class MainWindow
 	private global::Gtk.VScale vscaleDeadTime;
 	
 	private global::Gtk.Label lblDeadTime;
+	
+	private global::Gtk.VBox vbox1;
+	
+	private global::Gtk.VScale vscaleSpeed;
+	
+	private global::Gtk.Label lblDeadTime1;
+	
+	private global::Gtk.VBox vbox2;
+	
+	private global::Gtk.VScale vscaleDeadTime2;
+	
+	private global::Gtk.Label lblDeadTime2;
+	
+	private global::Gtk.VBox vbox5;
+	
+	private global::Gtk.VScale vscaleDeadTime3;
+	
+	private global::Gtk.Label lblDeadTime3;
 
 	protected virtual void Build ()
 	{
@@ -99,7 +117,7 @@ public partial class MainWindow
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.lblDeadTime = new global::Gtk.Label ();
 		this.lblDeadTime.Name = "lblDeadTime";
-		this.lblDeadTime.LabelProp = global::Mono.Unix.Catalog.GetString ("Dead Time");
+		this.lblDeadTime.LabelProp = global::Mono.Unix.Catalog.GetString ("DeadTime");
 		this.vbox3.Add (this.lblDeadTime);
 		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.lblDeadTime]));
 		w6.Position = 1;
@@ -110,9 +128,105 @@ public partial class MainWindow
 		w7.Position = 1;
 		w7.Expand = false;
 		w7.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.vscaleSpeed = new global::Gtk.VScale (null);
+		this.vscaleSpeed.CanFocus = true;
+		this.vscaleSpeed.Name = "vscaleSpeed";
+		this.vscaleSpeed.Adjustment.Upper = 1000;
+		this.vscaleSpeed.Adjustment.PageIncrement = 10;
+		this.vscaleSpeed.Adjustment.StepIncrement = 1;
+		this.vscaleSpeed.Adjustment.Value = 1000;
+		this.vscaleSpeed.DrawValue = true;
+		this.vscaleSpeed.Digits = 0;
+		this.vscaleSpeed.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbox1.Add (this.vscaleSpeed);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.vscaleSpeed]));
+		w8.Position = 0;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.lblDeadTime1 = new global::Gtk.Label ();
+		this.lblDeadTime1.Name = "lblDeadTime1";
+		this.lblDeadTime1.LabelProp = global::Mono.Unix.Catalog.GetString ("Speed");
+		this.vbox1.Add (this.lblDeadTime1);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblDeadTime1]));
+		w9.Position = 1;
+		w9.Expand = false;
+		w9.Fill = false;
+		this.hbxMixer.Add (this.vbox1);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox1]));
+		w10.Position = 2;
+		w10.Expand = false;
+		w10.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbox2 = new global::Gtk.VBox ();
+		this.vbox2.Name = "vbox2";
+		this.vbox2.Spacing = 6;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.vscaleDeadTime2 = new global::Gtk.VScale (null);
+		this.vscaleDeadTime2.CanFocus = true;
+		this.vscaleDeadTime2.Name = "vscaleDeadTime2";
+		this.vscaleDeadTime2.Inverted = true;
+		this.vscaleDeadTime2.Adjustment.Upper = 100;
+		this.vscaleDeadTime2.Adjustment.PageIncrement = 10;
+		this.vscaleDeadTime2.Adjustment.StepIncrement = 1;
+		this.vscaleDeadTime2.DrawValue = true;
+		this.vscaleDeadTime2.Digits = 0;
+		this.vscaleDeadTime2.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbox2.Add (this.vscaleDeadTime2);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vscaleDeadTime2]));
+		w11.Position = 0;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.lblDeadTime2 = new global::Gtk.Label ();
+		this.lblDeadTime2.Name = "lblDeadTime2";
+		this.lblDeadTime2.LabelProp = global::Mono.Unix.Catalog.GetString ("?");
+		this.vbox2.Add (this.lblDeadTime2);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblDeadTime2]));
+		w12.Position = 1;
+		w12.Expand = false;
+		w12.Fill = false;
+		this.hbxMixer.Add (this.vbox2);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox2]));
+		w13.Position = 3;
+		w13.Expand = false;
+		w13.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbox5 = new global::Gtk.VBox ();
+		this.vbox5.Name = "vbox5";
+		this.vbox5.Spacing = 6;
+		// Container child vbox5.Gtk.Box+BoxChild
+		this.vscaleDeadTime3 = new global::Gtk.VScale (null);
+		this.vscaleDeadTime3.CanFocus = true;
+		this.vscaleDeadTime3.Name = "vscaleDeadTime3";
+		this.vscaleDeadTime3.Inverted = true;
+		this.vscaleDeadTime3.Adjustment.Upper = 100;
+		this.vscaleDeadTime3.Adjustment.PageIncrement = 10;
+		this.vscaleDeadTime3.Adjustment.StepIncrement = 1;
+		this.vscaleDeadTime3.DrawValue = true;
+		this.vscaleDeadTime3.Digits = 0;
+		this.vscaleDeadTime3.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbox5.Add (this.vscaleDeadTime3);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.vscaleDeadTime3]));
+		w14.Position = 0;
+		// Container child vbox5.Gtk.Box+BoxChild
+		this.lblDeadTime3 = new global::Gtk.Label ();
+		this.lblDeadTime3.Name = "lblDeadTime3";
+		this.lblDeadTime3.LabelProp = global::Mono.Unix.Catalog.GetString ("?");
+		this.vbox5.Add (this.lblDeadTime3);
+		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.lblDeadTime3]));
+		w15.Position = 1;
+		w15.Expand = false;
+		w15.Fill = false;
+		this.hbxMixer.Add (this.vbox5);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox5]));
+		w16.Position = 4;
+		w16.Expand = false;
+		w16.Fill = false;
 		this.vbxMain.Add (this.hbxMixer);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
-		w8.Position = 1;
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
+		w17.Position = 1;
 		this.Add (this.vbxMain);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -122,6 +236,7 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.vscaleSetpoint.ValueChanged += new global::System.EventHandler (this.vScaleSetpoint_Changed);
-		this.vscaleDeadTime.ValueChanged += new global::System.EventHandler (this.vScaleDeadTime_Changed);
+		this.vscaleDeadTime.ValueChanged += new global::System.EventHandler (this.vscaleDeadTime_Changed);
+		this.vscaleSpeed.ValueChanged += new global::System.EventHandler (this.vScaleSpeed_Changed);
 	}
 }
