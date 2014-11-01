@@ -10,61 +10,20 @@ namespace Limbus.CloudFace
 	{
 		public static void Main(string[] arguments)
 		{
-			Console.WriteLine("Hello AppHarbor");
+			ConsoleMirror.Initialize();
 
-//			CheckUsage(arguments);
-//
-//			string clientId = arguments[0];
-//			string clientSecret = arguments[1];
-//
-//			Console.WriteLine("Please authorize this application in the browser window that has just opened");
-//			var authInfo = GetAuthorization(clientId, clientSecret);
-//
-//			Console.WriteLine("Authorization successful");
-//			var client = new AppHarborClient(authInfo);
-//
-//			Console.WriteLine("Applications:");
-//			foreach (var application in client.GetApplications())
-//			{
-//				Console.WriteLine(" - {0}", application.Name);
-//			}
-		}
-
-		private static void CheckUsage(string[] arguments)
-		{
-			if (arguments.Length != 2)
-			{
-				Console.WriteLine("Usage: {0} [clientId] [clientSecret]", ExecutableName);
-				Environment.Exit(1);
-			}
-		}
-
-		private static AuthInfo GetAuthorization(string clientId, string clientSecret)
-		{
 			try
 			{
-				return AppHarborClient.AskForAuthorization(clientId, clientSecret, TimeSpan.FromMinutes(1));
+				Console.WriteLine("AppHarbor background workers rock!");
 			}
-			catch (AuthenticationException)
+			catch (Exception ex)
 			{
-				Console.WriteLine("Failed to get authorization");
-				Environment.Exit(-1);
-				throw;
+				Console.WriteLine(ex.Message);
+				Console.WriteLine(ex.StackTrace);
 			}
-			catch (TimeoutException)
-			{
-				Console.WriteLine("Timeout, you have to be faster than that");
-				Environment.Exit(-1);
-				throw;
-			}
-		}
 
-		private static string ExecutableName
-		{
-			get
-			{
-				return Path.GetFileName(Assembly.GetEntryAssembly().Location);
-			}
+			var output = ConsoleMirror.Captured;
+			// do something useful with the output
 		}
 	}
 }

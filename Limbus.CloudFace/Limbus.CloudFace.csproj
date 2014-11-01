@@ -37,6 +37,9 @@
     <Reference Include="AppHarbor.Sdk">
       <HintPath>..\packages\AppHarbor.NET.2.2.0\lib\net35\AppHarbor.Sdk.dll</HintPath>
     </Reference>
+    <Reference Include="ConsoleMirror">
+      <HintPath>..\packages\ConsoleMirror.1.0.0.0\lib\net20\ConsoleMirror.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
