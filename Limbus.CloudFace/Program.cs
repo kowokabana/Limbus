@@ -10,22 +10,24 @@ namespace Limbus.CloudFace
 	{
 		public static void Main(string[] arguments)
 		{
-			CheckUsage(arguments);
+			Console.WriteLine("Hello AppHarbor");
 
-			string clientId = arguments[0];
-			string clientSecret = arguments[1];
-
-			Console.WriteLine("Please authorize this application in the browser window that has just opened");
-			var authInfo = GetAuthorization(clientId, clientSecret);
-
-			Console.WriteLine("Authorization successful");
-			var client = new AppHarborClient(authInfo);
-
-			Console.WriteLine("Applications:");
-			foreach (var application in client.GetApplications())
-			{
-				Console.WriteLine(" - {0}", application.Name);
-			}
+//			CheckUsage(arguments);
+//
+//			string clientId = arguments[0];
+//			string clientSecret = arguments[1];
+//
+//			Console.WriteLine("Please authorize this application in the browser window that has just opened");
+//			var authInfo = GetAuthorization(clientId, clientSecret);
+//
+//			Console.WriteLine("Authorization successful");
+//			var client = new AppHarborClient(authInfo);
+//
+//			Console.WriteLine("Applications:");
+//			foreach (var application in client.GetApplications())
+//			{
+//				Console.WriteLine(" - {0}", application.Name);
+//			}
 		}
 
 		private static void CheckUsage(string[] arguments)
