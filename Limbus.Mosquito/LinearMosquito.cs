@@ -1,6 +1,5 @@
 ﻿using System;
 using Limbus.Clockwork;
-using System.Reactive;
 using Limbus.Control;
 using System.Collections.Generic;
 
@@ -20,7 +19,7 @@ namespace Limbus.Mosquito
 		private DateTimeOffset time = DateTimeOffset.UtcNow;
 		private double actual = 0;
 
-		public LinearMosquito (TimeSpaned<double> gradient)
+		public LinearMosquito(TimeSpaned<double> gradient)
 		{
 			if (gradient.Value <= 0) throw new ArgumentOutOfRangeException ("gradient");
 
@@ -28,12 +27,12 @@ namespace Limbus.Mosquito
 			this.Gradient = gradient;
 		}
 
-		public void Send (Timestamped<double> setpoint)
+		public void Send(Timestamped<double> setpoint)
 		{
 			lock (mutex)
 			{
 				this.actual = GetActual ();
-				var earliestFinishTime = this.time.Add (actual.TimeTo(setpoint.Value, Gradient));
+				var earliestFinishTime = this.time.Add(actual.TimeTo(setpoint.Value, Gradient));
 
 				this.Setpoint = setpoint.Timestamp > earliestFinishTime ?
 					setpoint : Timestamped.Create(setpoint.Value, earliestFinishTime);
@@ -56,7 +55,7 @@ namespace Limbus.Mosquito
 			lock (mutex)
 			{
 				this.time = time;
-				if (Receive != null) Receive(Timestamped.Create<double>(GetActual(), time));
+				if (Receive != null) Receive(Timestamped.Create(GetActual(), time));
 			}
 		}
 	}

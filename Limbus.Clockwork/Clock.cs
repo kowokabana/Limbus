@@ -1,5 +1,4 @@
 using System;
-using System.Reactive.Disposables;
 
 namespace Limbus.Clockwork
 {
@@ -29,7 +28,7 @@ namespace Limbus.Clockwork
 		public IDisposable Subscribe(ITimed timed)
 		{
 			Reset += timed.Set;
-			return Disposable.Create (() => Reset -= timed.Set);
+			return new Action(() => Reset -= timed.Set).AsDisposable();
 		}
 
 		public void Unsubscribe(ITimed timed)

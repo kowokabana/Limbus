@@ -1,5 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
+using Limbus.Clockwork;
+using Limbus.Control;
 
 namespace Limbus.Mosquito.Test
 {
@@ -7,10 +9,14 @@ namespace Limbus.Mosquito.Test
 	public class LinearMosquitoTest
 	{
 		[Test]
-		public void SendSetpointSeries ()
+		public void Send_setpoint()
 		{
-			//var tMin = new DateTimeOffset (1, 1, 1, 0, 10, 0, TimeSpan.Zero);
-			//var tMax = new DateTimeOffset (1, 1, 1, 0, 25, 0, TimeSpan.Zero);
+			var tStart = DateTimeOffsetEx.Create().min(0).s(0).ms(0);
+			var mock = new LinearMosquito(TimeSpaned.Create(2.0, 1.min()));
+
+			mock.Receive += (ts) => { };
+
+			mock.Send(Timestamped.Create(20.0, tStart.min(5)));
 		}
 	}
 }

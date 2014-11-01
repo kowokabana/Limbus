@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
 using Gtk;
@@ -9,6 +8,7 @@ using Limbus.Plot;
 using OxyPlot;
 using OxyPlot.Axes;
 using System.Linq;
+using MoreLinq;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -20,13 +20,13 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
-		mock = new LinearMosquito (TimeSpaned.Create(2.0, 1.min()));
+		mock = new LinearMosquito(TimeSpaned.Create(2.0, 1.min()));
 		var tStart = DateTimeOffset.UtcNow;
 
-		clock = new Clock (tStart);
-		clock.Subscribe (mock);
+		clock = new Clock(tStart);
+		clock.Subscribe(mock);
 
-		var timePlot = new TimePlot ("Mosquito Population", 50, tStart);
+		var timePlot = new TimePlot ("Mosquito Plot", 50, tStart);
 
 		// this stuff runs in another task
 		mock.Receive += (ts) => {

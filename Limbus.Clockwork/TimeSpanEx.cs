@@ -2,7 +2,7 @@
 
 namespace Limbus.Clockwork
 {
-	public static class TimeSpanExtensions
+	public static class TimeSpanEx
 	{ 
 		public static TimeSpan min(this double src)
 		{
@@ -22,6 +22,16 @@ namespace Limbus.Clockwork
 		public static TimeSpan s(this double src)
 		{
 			return TimeSpan.FromSeconds (src);
+		}
+
+		public static TimeSpan ms(this double src)
+		{
+			return TimeSpan.FromMilliseconds (src);
+		}
+
+		public static TimeSpan ms(this int src)
+		{
+			return TimeSpan.FromMilliseconds (src);
 		}
 
 		public static TimeSpan TimeTo(this double from, double to, TimeSpaned<double> gradient)

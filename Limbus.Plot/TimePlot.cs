@@ -2,7 +2,9 @@
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using System.Reactive;
+using System.Diagnostics.Contracts;
+using System.Diagnostics;
+using Limbus.Clockwork;
 
 namespace Limbus.Plot
 {
@@ -22,6 +24,8 @@ namespace Limbus.Plot
 		public TimePlot (string title, int width, DateTimeOffset start)
 			: base (title)
 		{
+			if (width < 0) throw new ArgumentException ("width");
+
 			this.width = width;
 
 			this.Axes.Add(new LinearAxis
