@@ -38,7 +38,7 @@ namespace Limbus.Mosquito.Test
 		}
 
 		[Test]
-		public void Override_existing_setpoint()
+		public void Change_existing_setpoint()
 		{
 			mock.Send(20.0.At(tStart.Add(10.min())));
 			mock.Set(tStart.Add(5.min()));

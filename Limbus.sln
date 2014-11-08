@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.CloudFace", "Limbus.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Lab", "Limbus.Lab\Limbus.Lab.csproj", "{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Swarm", "Limbus.Swarm\Limbus.Swarm.csproj", "{C6988716-2747-47EF-9D9C-7374439464CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -33,6 +35,10 @@ Global
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Debug|x86.Build.0 = Debug|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Release|x86.ActiveCfg = Release|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Release|x86.Build.0 = Release|x86
+		{C6988716-2747-47EF-9D9C-7374439464CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C6988716-2747-47EF-9D9C-7374439464CE}.Debug|x86.Build.0 = Debug|Any CPU
+		{C6988716-2747-47EF-9D9C-7374439464CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{C6988716-2747-47EF-9D9C-7374439464CE}.Release|x86.Build.0 = Release|Any CPU
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Debug|x86.ActiveCfg = Debug|x86
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Debug|x86.Build.0 = Debug|x86
 		{CD77B5CF-3E66-4C0A-87E3-CCD45686A30F}.Release|x86.ActiveCfg = Release|x86
@@ -51,7 +57,7 @@ Global
 		{DE7F7ED1-59E3-4FED-95C4-0949AE702105}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Limbus.Lab\Limbus.Lab.csproj
+		StartupItem = Limbus.Swarm\Limbus.Swarm.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
