@@ -6,36 +6,41 @@ using System.Collections.Generic;
 namespace Limbus.Mosquito
 {
 	/// <summary>
-	/// A thread-safe mosquito machine with a linear-behaving engine
+	/// A thread-safe mosquito engine with a linear-behaving engine
 	/// </summary>
-	public class LinearMosquito : IControllable<double>, ITimed
+	public class LinearMosquito : IControllable<double>, ITimed, IEngine<double>
 	{
 		public event Action<Timestamped<double>> Receive;
 
 		public Timestamped<double> Setpoint { get; private set; }
+
 		public TimeSpaned<double> Gradient { get; private set; }
+		public TimeSpan Deadtime { get; private set; }
 
 		private object mutex = new object();
-		private DateTimeOffset time = DateTimeOffset.UtcNow;
+		private DateTimeOffset time;
 		private double actual = 0;
 
-		public LinearMosquito(TimeSpaned<double> gradient)
+		public LinearMosquito(TimeSpaned<double> gradient, TimeSpan deadtime, DateTimeOffset now)
 		{
 			if (gradient.Value <= 0) throw new ArgumentOutOfRangeException ("gradient");
 
-			this.Setpoint = Timestamped.Create(0.0, DateTimeOffset.UtcNow);
+			this.time = now;
+			this.Setpoint = 0.0.At(this.time);
 			this.Gradient = gradient;
+			this.Deadtime = deadtime;
 		}
 
 		public void Send(Timestamped<double> setpoint)
 		{
 			lock (mutex)
 			{
-				this.actual = GetActual ();
+				this.actual = GetActual();
 				var earliestFinishTime = this.time.Add(actual.TimeTo(setpoint.Value, Gradient));
 
 				this.Setpoint = setpoint.Timestamp > earliestFinishTime ?
-					setpoint : Timestamped.Create(setpoint.Value, earliestFinishTime);
+					setpoint : 
+					Timestamped.Create(setpoint.Value, earliestFinishTime);
 			}
 		}
 
@@ -55,7 +60,7 @@ namespace Limbus.Mosquito
 			lock (mutex)
 			{
 				this.time = time;
-				if (Receive != null) Receive(Timestamped.Create(GetActual(), time));
+				if (Receive != null) Receive(GetActual().At(time));
 			}
 		}
 	}

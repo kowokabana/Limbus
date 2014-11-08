@@ -4,7 +4,7 @@ namespace Limbus.Clockwork
 {
 	public interface ITimed
 	{
-		void Set (DateTimeOffset time);
+		void Set(DateTimeOffset time);
 	}
 }
 

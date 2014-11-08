@@ -21,9 +21,9 @@ namespace Limbus.Clockwork
 			return new TimeSpaned<T> (v, duration);
 		}
 
-		public static TimeSpaned<double> In(this double src, TimeSpan duration)
+		public static TimeSpaned<T> In<T>(this T v, TimeSpan duration)
 		{
-			return new TimeSpaned<double>(src, duration);
+			return TimeSpaned.Create<T>(v, duration);
 		}
 	}
 }
