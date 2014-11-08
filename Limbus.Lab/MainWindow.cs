@@ -20,7 +20,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
-		mock = new LinearMosquito(TimeSpaned.Create(2.0, 1.min()), DateTimeOffset.UtcNow);
+		mock = new LinearMosquito(TimeSpaned.Create(2.0, 1.min()), 1.min(), DateTimeOffset.UtcNow);
 		var tStart = DateTimeOffset.UtcNow;
 
 		clock = new Clock(tStart);

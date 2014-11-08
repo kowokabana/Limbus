@@ -18,7 +18,7 @@ namespace Limbus.Mosquito.Test
 		public void Setup()
 		{
 			tStart = 0.AsMinute();
-			mock = new LinearMosquito(2.0.In(1.min()), tStart);
+			mock = new LinearMosquito(2.0.In(1.min()), 0.min(), tStart);
 
 			received = new List<Timestamped<double>>();
 			mock.Receive += (v) => {
@@ -59,7 +59,7 @@ namespace Limbus.Mosquito.Test
 
 			Assert.AreEqual(0.0.At(tStart.Add(5.min())), received.First());
 			Assert.AreEqual(10.0.At(tStart.Add(10.min())), received.ElementAt(1));
-			Assert.AreEqual(20.0.At(tStart.Add(15.min()), received.ElementAt(2)));
+			Assert.AreEqual(20.0.At(tStart.Add(15.min())), received.ElementAt(2));
 		}
 	}
 }
