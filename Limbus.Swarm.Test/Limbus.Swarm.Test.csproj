@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C6988716-2747-47EF-9D9C-7374439464CE}</ProjectGuid>
+    <ProjectGuid>{8510A426-3D9B-4671-A162-1E4795045DDF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Limbus.Swarm</RootNamespace>
-    <AssemblyName>Limbus.Swarm</AssemblyName>
+    <RootNamespace>Limbus.Swarm.Test</RootNamespace>
+    <AssemblyName>Limbus.Swarm.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,32 +29,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="NetMQ">
       <HintPath>..\packages\NetMQ.3.3.0.11\lib\net40\NetMQ.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControllableClient.cs" />
-    <Compile Include="FileServer.cs" />
-    <Compile Include="FileClient.cs" />
+    <Compile Include="SwarmTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Limbus.Swarm\Limbus.Swarm.csproj">
+      <Project>{C6988716-2747-47EF-9D9C-7374439464CE}</Project>
+      <Name>Limbus.Swarm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Limbus.Mosquito\Limbus.Mosquito.csproj">
       <Project>{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}</Project>
       <Name>Limbus.Mosquito</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Limbus.Control\Limbus.Control.csproj">
-      <Project>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</Project>
-      <Name>Limbus.Control</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Limbus.Clockwork\Limbus.Clockwork.csproj">
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.Control\Limbus.Control.csproj">
+      <Project>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</Project>
+      <Name>Limbus.Control</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

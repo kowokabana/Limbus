@@ -1,15 +1,31 @@
 ﻿using System;
-using NetMQ;
-using Limbus.Mosquito;
-using Limbus.Clockwork;
+using NUnit.Framework;
 using System.Threading.Tasks;
 using System.Threading;
+using NetMQ;
+using Limbus.Clockwork;
+using Limbus.Mosquito;
 
-namespace Limbus.Swarm
+namespace Limbus.Swarm.Test
 {
-	class Program
+	[TestFixture]
+	public class SwarmTests
 	{
-		private static void Main(string[] args)
+		[Test]
+		[Explicit]
+		public void Copy_file()
+		{
+			var address = "tcp://127.0.0.1:5556";
+
+			Task.Run(() => new FileServer(address,"/Users/kowo/Downloads/snarf_copied.zip"));
+			Task.Run(() => new FileClient(address, "/Users/kowo/Downloads/snarf.zip"));
+
+			Thread.Sleep(3.s());
+		}
+
+		[Test]
+		[Explicit]
+		public void Remote_mosquito()
 		{
 			var address = "tcp://127.0.0.1:5556";
 			Task.Run(() => {
@@ -32,11 +48,11 @@ namespace Limbus.Swarm
 
 			Task.Run(() =>
 				new ControllableClient<double>(new LinearMosquito(
-				2.0.In(1.min()), 
-				TimeSpan.Zero,
-				DateTimeOffset.UtcNow),
-				address,
-				"ClientA"));
+					2.0.In(1.min()), 
+					TimeSpan.Zero,
+					DateTimeOffset.UtcNow),
+					address,
+					"ClientA"));
 
 			Task.Run(() => 
 				new ControllableClient<double>(new LinearMosquito(
@@ -46,7 +62,7 @@ namespace Limbus.Swarm
 					address,
 					"ClientB"));
 
-			Thread.Sleep(20.min());
+			Thread.Sleep(20.s());
 		}
 	}
 }
