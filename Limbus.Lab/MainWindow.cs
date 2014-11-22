@@ -12,7 +12,7 @@ using MoreLinq;
 
 public partial class MainWindow: Gtk.Window
 {
-	private LinearMosquito mock;
+	private Delayer<double> delayedMock;
 	private Clock clock;
 	private int speed = 1000;
 
@@ -20,16 +20,18 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
-		mock = new LinearMosquito(TimeSpaned.Create(2.0, 1.min()), 1.min(), DateTimeOffset.UtcNow);
+		var linearMock = new LinearMosquito(2.0.In(1.min()), DateTimeOffset.UtcNow);
+		delayedMock = linearMock.WithDelay(5.min());
 		var tStart = DateTimeOffset.UtcNow;
 
 		clock = new Clock(tStart);
-		clock.Subscribe(mock);
+		clock.Subscribe(linearMock);
+		clock.Subscribe(delayedMock);
 
 		var timePlot = new TimePlot ("Mosquito Plot", 50, tStart);
 
 		// this stuff runs in another task
-		mock.Receive += (ts) => {
+		linearMock.Receive += (ts) => {
 			timePlot.AddPoint(ts);
 			timePlot.InvalidatePlot (true);
 		};
@@ -60,7 +62,8 @@ public partial class MainWindow: Gtk.Window
 
 	protected void vScaleSetpoint_Changed (object sender, EventArgs e)
 	{
-		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
+		var setpoint = vscaleSetpoint.Value.At(clock.Time).At(clock.Time);
+		delayedMock.Send(setpoint);
 	}
 
 	protected void vScaleSpeed_Changed (object sender, EventArgs e)
@@ -70,6 +73,6 @@ public partial class MainWindow: Gtk.Window
 
 	protected void vscaleDeadTime_Changed (object sender, EventArgs e)
 	{
-		mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
+		//mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}
 }

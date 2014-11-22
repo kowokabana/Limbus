@@ -49,7 +49,6 @@ namespace Limbus.Swarm.Test
 			Task.Run(() =>
 				new ControllableClient<double>(new LinearMosquito(
 					2.0.In(1.min()), 
-					TimeSpan.Zero,
 					DateTimeOffset.UtcNow),
 					address,
 					"ClientA"));
@@ -57,7 +56,6 @@ namespace Limbus.Swarm.Test
 			Task.Run(() => 
 				new ControllableClient<double>(new LinearMosquito(
 					2.0.In(1.min()), 
-					TimeSpan.Zero,
 					DateTimeOffset.UtcNow), 
 					address,
 					"ClientB"));

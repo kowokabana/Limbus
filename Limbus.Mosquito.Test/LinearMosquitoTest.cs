@@ -18,7 +18,7 @@ namespace Limbus.Mosquito.Test
 		public void Setup()
 		{
 			tStart = 0.AsMinute();
-			mock = new LinearMosquito(2.0.In(1.min()), 0.min(), tStart);
+			mock = new LinearMosquito(2.0.In(1.min()), tStart);
 
 			received = new List<Timestamped<double>>();
 			mock.Receive += (v) => {

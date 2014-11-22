@@ -69,7 +69,7 @@ Global
 		{DE7F7ED1-59E3-4FED-95C4-0949AE702105}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Limbus.Swarm\Limbus.Swarm.csproj
+		StartupItem = Limbus.Lab\Limbus.Lab.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

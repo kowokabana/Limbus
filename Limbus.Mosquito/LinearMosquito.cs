@@ -13,22 +13,19 @@ namespace Limbus.Mosquito
 		public event Action<Timestamped<double>> Receive;
 
 		public Timestamped<double> Setpoint { get; private set; }
-
 		public TimeSpaned<double> Gradient { get; private set; }
-		public TimeSpan Deadtime { get; private set; }
 
 		private object mutex = new object();
 		private DateTimeOffset time;
 		private double actual = 0;
 
-		public LinearMosquito(TimeSpaned<double> gradient, TimeSpan deadtime, DateTimeOffset now)
+		public LinearMosquito(TimeSpaned<double> gradient, DateTimeOffset now)
 		{
 			if (gradient.Value <= 0) throw new ArgumentOutOfRangeException ("gradient");
 
 			this.time = now;
 			this.Setpoint = 0.0.At(this.time);
 			this.Gradient = gradient;
-			this.Deadtime = deadtime;
 		}
 
 		public void Send(Timestamped<double> setpoint)
@@ -40,7 +37,7 @@ namespace Limbus.Mosquito
 
 				this.Setpoint = setpoint.Timestamp > earliestFinishTime ?
 					setpoint : 
-					Timestamped.Create(setpoint.Value, earliestFinishTime);
+					setpoint.Value.At(earliestFinishTime);
 			}
 		}
 
@@ -48,11 +45,13 @@ namespace Limbus.Mosquito
 		{
 			if (time >= Setpoint.Timestamp) return Setpoint.Value;
 			var engineStartTime = Setpoint.Timestamp - this.actual.TimeTo(Setpoint.Value, Gradient);
-			if (time < engineStartTime) return 0.0;
+			if (time < engineStartTime) return this.actual;
 
 			var timeSinceStart = time - engineStartTime;
 			var delta = (timeSinceStart.TotalSeconds / Gradient.Duration.TotalSeconds) * Gradient.Value;
-			return Setpoint.Value > this.actual ? this.actual + delta : this.actual - delta;
+			return Setpoint.Value > this.actual ? 
+				this.actual + delta : 
+				this.actual - delta;
 		}
 
 		public void Set(DateTimeOffset time)

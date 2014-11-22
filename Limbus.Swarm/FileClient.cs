@@ -15,7 +15,7 @@ namespace Limbus.Swarm
 		{
 			var filename = Path.GetFileName(path);
 			client.Send(filename);
-			var answer = client.ReceiveString();
+			//var answer = client.ReceiveString();
 
 			using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
 			{					
