@@ -12,7 +12,7 @@ namespace Limbus.Swarm.Test
 	public class SwarmTests
 	{
 		[Test]
-		[Explicit]
+		[Ignore]
 		public void Copy_file()
 		{
 			var address = "tcp://127.0.0.1:5556";
@@ -24,7 +24,7 @@ namespace Limbus.Swarm.Test
 		}
 
 		[Test]
-		[Explicit]
+		[Ignore]
 		public void Remote_mosquito()
 		{
 			var address = "tcp://127.0.0.1:5556";
