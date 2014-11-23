@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Limbus.Control
+namespace Limbus.Linq
 {
 	public static class DictionaryEx
 	{

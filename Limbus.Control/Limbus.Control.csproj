@@ -39,7 +39,6 @@
     <Compile Include="IController.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="PIDController.cs" />
-    <Compile Include="DictionaryEx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

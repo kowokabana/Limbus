@@ -38,7 +38,12 @@
     <Compile Include="DateTimeOffsetEx.cs" />
     <Compile Include="TimeSpanEx.cs" />
     <Compile Include="TimeStamped.cs" />
-    <Compile Include="ActionEx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Limbus.Linq\Limbus.Linq.csproj">
+      <Project>{B893E670-EEA0-4B04-9EFB-8EAED8C8AD0A}</Project>
+      <Name>Limbus.Linq</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

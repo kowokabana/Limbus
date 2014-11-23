@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Limbus.Mosquito
 {
 	/// <summary>
-	/// A thread-safe mosquito engine with a linear-behaving engine
+	/// A thread-safe mosquito with a linear-behaving engine
 	/// </summary>
 	public class LinearMosquito : IControllable<double>, ITimed, IEngine<double>
 	{

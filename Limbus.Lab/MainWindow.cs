@@ -18,7 +18,7 @@ public partial class MainWindow: Gtk.Window
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
-		Build ();
+		Build();
 
 		var linearMock = new LinearMosquito(2.0.In(1.min()), DateTimeOffset.UtcNow);
 		delayedMock = linearMock.WithDelay(5.min());

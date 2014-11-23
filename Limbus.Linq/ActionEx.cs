@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Limbus.Clockwork
+namespace Limbus.Linq
 {
 	public class Disposable : IDisposable
 	{
