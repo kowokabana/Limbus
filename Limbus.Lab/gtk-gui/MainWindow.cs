@@ -136,7 +136,7 @@ public partial class MainWindow
 		this.vscaleSpeed = new global::Gtk.VScale (null);
 		this.vscaleSpeed.CanFocus = true;
 		this.vscaleSpeed.Name = "vscaleSpeed";
-		this.vscaleSpeed.Adjustment.Upper = 1000;
+		this.vscaleSpeed.Adjustment.Upper = 5000;
 		this.vscaleSpeed.Adjustment.PageIncrement = 10;
 		this.vscaleSpeed.Adjustment.StepIncrement = 1;
 		this.vscaleSpeed.Adjustment.Value = 1000;

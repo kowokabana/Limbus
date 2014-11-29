@@ -131,7 +131,7 @@
                   <widget class="Gtk.VScale" id="vscaleSpeed">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Upper">1000</property>
+                    <property name="Upper">5000</property>
                     <property name="PageIncrement">10</property>
                     <property name="StepIncrement">1</property>
                     <property name="Value">1000</property>

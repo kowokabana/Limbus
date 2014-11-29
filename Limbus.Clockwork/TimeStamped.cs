@@ -17,6 +17,11 @@ namespace Limbus.Clockwork
 		{
 			return Value.Equals(other.Value) && Timestamp.Equals(other.Timestamp);
 		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} at {1}", Value, Timestamp);
+		}
 	}
 
 	public static class Timestamped
