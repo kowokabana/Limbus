@@ -5,26 +5,28 @@ using OxyPlot.Series;
 using System.Diagnostics.Contracts;
 using System.Diagnostics;
 using Limbus.Clockwork;
+using System.Collections.Generic;
 
 namespace Limbus.Plot
 {
 	public class TimePlot : PlotModel
 	{
-		public LineSeries Line { get; private set; }
+		public List<LineSeries> Lines { get; private set; }
 		public DateTimeAxis TimeAxis { get; private set; }
 
 		private int width = 50;
 
-		public void AddPoint(Timestamped<double> point)
+		public void AddPoint(int line, Timestamped<double> point)
 		{
-			this.Line.Points.Add (DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, point.Value));
-			if(this.Line.Points.Count > width) this.Line.Points.RemoveAt(0);
+			this.Lines[line].Points.Add (DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, point.Value));
+			if(this.Lines[line].Points.Count > width) this.Lines[line].Points.RemoveAt(0);
 		}
 
 		public TimePlot (string title, int width, DateTimeOffset start)
 			: base (title)
 		{
 			if (width < 0) throw new ArgumentException ("width");
+			this.Lines = new List<LineSeries>();
 
 			this.width = width;
 
@@ -51,9 +53,9 @@ namespace Limbus.Plot
 
 			this.Axes.Add(TimeAxis);
 
-			var line = new LineSeries {
-				Title = "Line1",
-				DataFieldX = "X", 
+			var actuals = new LineSeries {
+				Title = "Actuals",
+				DataFieldX = "X",
 				DataFieldY = "Y", 
 				Color = OxyColors.Blue,
 				MarkerType = MarkerType.Circle,
@@ -63,11 +65,25 @@ namespace Limbus.Plot
 				MarkerStrokeThickness = 1.5
 			};
 
-			this.Line = line;
-			this.Series.Add(line);
+			var setpoints = new StairStepSeries {
+				Title = "Setpoints",
+				DataFieldX = "X",
+				DataFieldY = "Y", 
+				Color = OxyColors.Red,
+				MarkerType = MarkerType.Circle,
+				MarkerSize = 2,
+				MarkerStroke = OxyColors.Black,
+				MarkerFill = OxyColors.Black,
+				MarkerStrokeThickness = 1.5
+			};
+
+			this.Lines.Add(actuals);
+			this.Lines.Add(setpoints);
+			this.Series.Add(actuals);
+			this.Series.Add(setpoints);
 
 			for (int i = 0; i <= width; i++) {
-				AddPoint (Timestamped.Create (0.0, start.AddMinutes(-width).AddMinutes(i)));
+				AddPoint(0, 0.0.At(start.AddMinutes(-width).AddMinutes(i)));
 			}
 		}
 	}

@@ -70,6 +70,7 @@ public partial class MainWindow
 		this.vscaleSetpoint = new global::Gtk.VScale (null);
 		this.vscaleSetpoint.CanFocus = true;
 		this.vscaleSetpoint.Name = "vscaleSetpoint";
+		this.vscaleSetpoint.UpdatePolicy = ((global::Gtk.UpdateType)(2));
 		this.vscaleSetpoint.Inverted = true;
 		this.vscaleSetpoint.Adjustment.Lower = -100;
 		this.vscaleSetpoint.Adjustment.Upper = 100;

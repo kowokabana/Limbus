@@ -15,6 +15,7 @@ public partial class MainWindow: Gtk.Window
 	private Delayer<double> delayedMock;
 	private Clock clock;
 	private int speed = 1000;
+	private TimePlot timePlot;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
@@ -28,11 +29,11 @@ public partial class MainWindow: Gtk.Window
 		clock.Subscribe(linearMock);
 		clock.Subscribe(delayedMock);
 
-		var timePlot = new TimePlot ("Mosquito Plot", 50, tStart);
+		timePlot = new TimePlot ("Mosquito Plot", 50, tStart);
 
 		// this stuff runs in another task
 		linearMock.Receive += (ts) => {
-			timePlot.AddPoint(ts);
+			timePlot.AddPoint(0, ts);
 			timePlot.InvalidatePlot (true);
 		};
 
@@ -51,7 +52,7 @@ public partial class MainWindow: Gtk.Window
 
 		this.SetSizeRequest(1000, 600);
 
-		vbxPlot.Add (plotView);
+		vbxPlot.Add(plotView);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -64,6 +65,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		var setpoint = vscaleSetpoint.Value.At(clock.Time).At(clock.Time);
 		delayedMock.Send(setpoint);
+		this.timePlot.AddPoint(1, setpoint.Value);
 	}
 
 	protected void vScaleSpeed_Changed (object sender, EventArgs e)

@@ -45,6 +45,7 @@
                   <widget class="Gtk.VScale" id="vscaleSetpoint">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <property name="UpdatePolicy">Delayed</property>
                     <property name="Inverted">True</property>
                     <property name="Lower">-100</property>
                     <property name="Upper">100</property>
