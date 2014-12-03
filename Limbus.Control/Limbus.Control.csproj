@@ -39,12 +39,17 @@
     <Compile Include="IController.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="PIDController.cs" />
+    <Compile Include="Pair.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Limbus.Clockwork\Limbus.Clockwork.csproj">
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.Linq\Limbus.Linq.csproj">
+      <Project>{B893E670-EEA0-4B04-9EFB-8EAED8C8AD0A}</Project>
+      <Name>Limbus.Linq</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

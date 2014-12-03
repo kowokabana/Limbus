@@ -5,7 +5,7 @@ namespace Limbus.Linq
 {
 	public static class DictionaryEx
 	{
-		public static void Add<TKey, TValue>(this IDictionary<TKey, TValue> src, TKey key, TValue val)
+		public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> src, TKey key, TValue val)
 	  {
 			TValue old;
 			if (!src.TryGetValue(key, out old)) {

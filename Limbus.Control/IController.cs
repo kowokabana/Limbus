@@ -4,7 +4,7 @@ using Limbus.Clockwork;
 
 namespace Limbus.Control
 {
-	public interface IController<T> : IControllable<T>
+	public interface IController<T>
 	{
 		void Update(IEnumerable<IControllable<T>> swarm);
 	}

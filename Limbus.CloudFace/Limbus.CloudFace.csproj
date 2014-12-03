@@ -31,14 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.0\lib\net4\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="AppHarbor.Sdk">
       <HintPath>..\packages\AppHarbor.NET.2.2.0\lib\net35\AppHarbor.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="ConsoleMirror">
       <HintPath>..\packages\ConsoleMirror.1.0.0.0\lib\net20\ConsoleMirror.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
