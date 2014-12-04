@@ -1,4 +1,4 @@
 Limbus
 ======
 
-An open control system framework to mastermind big swarms of mosquitos.
+A process control framework to mastermind big swarms of mosquitos.
