@@ -8,7 +8,7 @@ namespace Limbus.Mosquito
 	/// <summary>
 	/// A thread-safe mosquito with a linear-behaving engine
 	/// </summary>
-	public class LinearMosquito : IControllable<double>, ITimed, IEngine<double>
+	public class LinearMosquito : IControllable<double>, ITimed
 	{
 		public event Action<Timestamped<double>> Receive;
 
