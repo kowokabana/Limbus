@@ -57,5 +57,9 @@
       <Project>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</Project>
       <Name>Limbus.Control</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Limbus.Allocation\Limbus.Allocation.csproj">
+      <Project>{FB1FB0FB-C07F-4804-9F9D-35583E8B2E5A}</Project>
+      <Name>Limbus.Allocation</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
