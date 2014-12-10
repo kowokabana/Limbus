@@ -60,5 +60,9 @@
       <Project>{C0D54961-BB58-4836-A1C0-99B7515B0C09}</Project>
       <Name>Limbus.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
+      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
+      <Name>Limbus.API</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

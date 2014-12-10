@@ -45,5 +45,9 @@
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
+      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
+      <Name>Limbus.API</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

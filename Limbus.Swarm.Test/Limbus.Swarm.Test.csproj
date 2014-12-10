@@ -61,5 +61,9 @@
       <Project>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</Project>
       <Name>Limbus.Control</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
+      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
+      <Name>Limbus.API</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

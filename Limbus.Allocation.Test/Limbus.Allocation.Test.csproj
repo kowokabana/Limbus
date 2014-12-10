@@ -43,6 +43,10 @@
       <Project>{FB1FB0FB-C07F-4804-9F9D-35583E8B2E5A}</Project>
       <Name>Limbus.Allocation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Limbus.Things\Limbus.Things.csproj">
+      <Project>{4494100E-6160-4FE9-9B44-34B26190CA75}</Project>
+      <Name>Limbus.Things</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

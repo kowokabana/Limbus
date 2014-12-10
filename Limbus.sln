@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Allocation", "Limbus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Allocation.Test", "Limbus.Allocation.Test\Limbus.Allocation.Test.csproj", "{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Things", "Limbus.Things\Limbus.Things.csproj", "{4494100E-6160-4FE9-9B44-34B26190CA75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.API", "Limbus.API\Limbus.API.csproj", "{267D2B9D-1464-44FC-B96B-8FD67EA7203A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -43,10 +47,18 @@ Global
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Debug|x86.Build.0 = Debug|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.ActiveCfg = Release|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.Build.0 = Release|Any CPU
+		{267D2B9D-1464-44FC-B96B-8FD67EA7203A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{267D2B9D-1464-44FC-B96B-8FD67EA7203A}.Debug|x86.Build.0 = Debug|Any CPU
+		{267D2B9D-1464-44FC-B96B-8FD67EA7203A}.Release|x86.ActiveCfg = Release|Any CPU
+		{267D2B9D-1464-44FC-B96B-8FD67EA7203A}.Release|x86.Build.0 = Release|Any CPU
 		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Debug|x86.Build.0 = Debug|Any CPU
 		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Release|x86.ActiveCfg = Release|Any CPU
 		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Release|x86.Build.0 = Release|Any CPU
+		{4494100E-6160-4FE9-9B44-34B26190CA75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4494100E-6160-4FE9-9B44-34B26190CA75}.Debug|x86.Build.0 = Debug|Any CPU
+		{4494100E-6160-4FE9-9B44-34B26190CA75}.Release|x86.ActiveCfg = Release|Any CPU
+		{4494100E-6160-4FE9-9B44-34B26190CA75}.Release|x86.Build.0 = Release|Any CPU
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Debug|x86.ActiveCfg = Debug|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Debug|x86.Build.0 = Debug|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Release|x86.ActiveCfg = Release|x86

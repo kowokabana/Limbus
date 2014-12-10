@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Limbus.Allocation
 {
-	public interface IAllocator<T1, T2>
+	public interface IAllocator<T, T2>
 	{
-		bool TryAllocate(IEnumerable<Allocatable<T1, T2>> allocatables, T1 setpoint);
+		bool TryAllocate(IEnumerable<AllocatableThing<T, T2>> allocatables, T setpoint);
 	}
 }
 

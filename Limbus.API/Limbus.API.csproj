@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</ProjectGuid>
+    <ProjectGuid>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Limbus.Control</RootNamespace>
-    <AssemblyName>Limbus.Control</AssemblyName>
+    <RootNamespace>Limbus.API</RootNamespace>
+    <AssemblyName>Limbus.API</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,16 +29,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MoreLinq">
-      <HintPath>..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IController.cs" />
-    <Compile Include="PIDController.cs" />
-    <Compile Include="Pair.cs" />
-    <Compile Include="ControllableThing.cs" />
+    <Compile Include="IControllable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -46,24 +40,5 @@
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Limbus.Linq\Limbus.Linq.csproj">
-      <Project>{B893E670-EEA0-4B04-9EFB-8EAED8C8AD0A}</Project>
-      <Name>Limbus.Linq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Limbus.Allocation\Limbus.Allocation.csproj">
-      <Project>{FB1FB0FB-C07F-4804-9F9D-35583E8B2E5A}</Project>
-      <Name>Limbus.Allocation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Limbus.Things\Limbus.Things.csproj">
-      <Project>{4494100E-6160-4FE9-9B44-34B26190CA75}</Project>
-      <Name>Limbus.Things</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
-      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
-      <Name>Limbus.API</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

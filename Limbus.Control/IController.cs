@@ -5,9 +5,9 @@ using Limbus.Allocation;
 
 namespace Limbus.Control
 {
-	public interface IController<T1, T2>
+	public interface IController<T, T2>
 	{
-		void Update(IEnumerable<IControllable<T1>> swarm, IAllocator<T1, T2> allocator);
+		void Update(IEnumerable<ControllableThing<T, T2>> swarm, IAllocator<T, T2> allocator);
 	}
 }
 

@@ -2,6 +2,7 @@
 using Limbus.Control;
 using NetMQ;
 using System.Threading;
+using Limbus.API;
 
 namespace Limbus.Swarm
 {

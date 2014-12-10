@@ -2,7 +2,7 @@
 using Limbus.Clockwork;
 using System.Collections.Generic;
 
-namespace Limbus.Allocation
+namespace Limbus.Things
 {
 	public class Engine<T>
 	{
@@ -24,14 +24,6 @@ namespace Limbus.Allocation
 	{
 		Continuously,
 		Staged
-	}
-
-	public static class EngineEx
-	{
-		public static Allocatable<T, Engine<T>> AsAllocatable<T>(this Engine<T> engine)
-		{
-			return new Allocatable<T, Engine<T>>(engine);
-		}
 	}
 }
 

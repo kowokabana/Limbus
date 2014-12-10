@@ -1,7 +1,7 @@
 ﻿using System;
 using Limbus.Clockwork;
 
-namespace Limbus.Control
+namespace Limbus.API
 {
 	public interface IControllable<T>
 	{
