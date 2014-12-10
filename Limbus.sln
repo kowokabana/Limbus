@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Linq", "Limbus.Linq\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Allocation", "Limbus.Allocation\Limbus.Allocation.csproj", "{FB1FB0FB-C07F-4804-9F9D-35583E8B2E5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Allocation.Test", "Limbus.Allocation.Test\Limbus.Allocation.Test.csproj", "{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -41,6 +43,10 @@ Global
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Debug|x86.Build.0 = Debug|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.ActiveCfg = Release|Any CPU
 		{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}.Release|x86.Build.0 = Release|Any CPU
+		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{3406407C-FCC0-4B9F-B1EE-709A33FB21C2}.Release|x86.Build.0 = Release|Any CPU
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Debug|x86.ActiveCfg = Debug|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Debug|x86.Build.0 = Debug|x86
 		{703696BF-2B4E-4F98-92CA-EEC0215C11BA}.Release|x86.ActiveCfg = Release|x86

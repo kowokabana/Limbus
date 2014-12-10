@@ -6,10 +6,10 @@ namespace Limbus.Allocation
 {
 	public class Engine<T>
 	{
-		public TimeSpan Deadtime { get; private set;}
-		public TimeSpaned<T> Gradient { get; private set;}
-		public SortedSet<T> Stages { get; private set;}
-		public Variability Variability { get; private set;}
+		public TimeSpan Deadtime { get; set;}
+		public TimeSpaned<T> Gradient { get; set;}
+		public SortedSet<T> Stages { get; set;}
+		public Variability Variability { get; set;}
 
 		public Engine()
 		{
@@ -24,6 +24,14 @@ namespace Limbus.Allocation
 	{
 		Continuously,
 		Staged
+	}
+
+	public static class EngineEx
+	{
+		public static Allocatable<T, Engine<T>> AsAllocatable<T>(this Engine<T> engine)
+		{
+			return new Allocatable<T, Engine<T>>(engine);
+		}
 	}
 }
 

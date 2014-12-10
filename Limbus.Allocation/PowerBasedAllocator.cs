@@ -13,8 +13,14 @@ namespace Limbus.Allocation
 				Logger.Log("PowerBasedAllocator", "Engines contain stepped engine that will be ignored", Level.Warning);
 
 			var contiuousAllocatables = allocatables.Where(a => a.Parameters.Variability == Variability.Continuously);
-			var flexiblePower = contiuousAllocatables.Sum(a => a.Parameters.Stages.Max() - a.Parameters.Stages.Min());
-			//TODO: check if really flexPower should be used here
+			var swarmPower = contiuousAllocatables.Sum(a => a.Parameters.Stages.Max() - a.Parameters.Stages.Min());
+
+			foreach (var a in contiuousAllocatables) {
+				var enginePower = a.Parameters.Stages.Max() - a.Parameters.Stages.Min();
+				var weight = 1 / swarmPower * enginePower;
+				a.Allocated = weight * setpoint;
+			}
+
 			return true;
 		}
 	}
