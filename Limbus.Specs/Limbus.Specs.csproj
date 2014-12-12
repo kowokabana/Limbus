@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4494100E-6160-4FE9-9B44-34B26190CA75}</ProjectGuid>
+    <ProjectGuid>{7A933EB7-3DC4-4913-9749-7A2C958B52B8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Limbus.Things</RootNamespace>
-    <AssemblyName>Limbus.Things</AssemblyName>
+    <RootNamespace>Limbus.Specs</RootNamespace>
+    <AssemblyName>Limbus.Specs</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,6 +39,10 @@
     <ProjectReference Include="..\Limbus.Clockwork\Limbus.Clockwork.csproj">
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
+      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
+      <Name>Limbus.API</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

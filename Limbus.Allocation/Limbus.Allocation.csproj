@@ -34,7 +34,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PowerBasedAllocator.cs" />
     <Compile Include="PriceBasedAllocator.cs" />
-    <Compile Include="AllocatableThing.cs" />
     <Compile Include="IAllocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -47,9 +46,13 @@
       <Project>{C0D54961-BB58-4836-A1C0-99B7515B0C09}</Project>
       <Name>Limbus.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Limbus.Things\Limbus.Things.csproj">
-      <Project>{4494100E-6160-4FE9-9B44-34B26190CA75}</Project>
-      <Name>Limbus.Things</Name>
+    <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
+      <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
+      <Name>Limbus.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.Specs\Limbus.Specs.csproj">
+      <Project>{7A933EB7-3DC4-4913-9749-7A2C958B52B8}</Project>
+      <Name>Limbus.Specs</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

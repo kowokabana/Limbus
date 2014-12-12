@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Limbus.Things;
+using Limbus.Specs;
 
 namespace Limbus.Allocation.Test
 {
@@ -19,10 +19,10 @@ namespace Limbus.Allocation.Test
 			var success = allocator.TryAllocate(new[] { engine100, engine200, engine300, engineSkipped }, 600);
 
 			Assert.IsTrue(success);
-			Assert.AreEqual(100, engine100.Allocated, 0.01);
-			Assert.AreEqual(200, engine200.Allocated, 0.01);
-			Assert.AreEqual(300, engine300.Allocated, 0.01);
-			Assert.AreEqual(0, engineSkipped.Allocated, 0.01);
+			Assert.AreEqual(100, engine100.Quantity, 0.01);
+			Assert.AreEqual(200, engine200.Quantity, 0.01);
+			Assert.AreEqual(300, engine300.Quantity, 0.01);
+			Assert.AreEqual(0, engineSkipped.Quantity, 0.01);
 		}
 	}
 }
