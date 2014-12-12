@@ -57,10 +57,6 @@
       <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
       <Name>Limbus.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Limbus.Specs\Limbus.Spec.csproj">
-      <Project>{7A933EB7-3DC4-4913-9749-7A2C958B52B8}</Project>
-      <Name>Limbus.Spec</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
