@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Limbus.Clockwork;
 using Limbus.API;
 
-namespace Limbus.Specs
+namespace Limbus.Spec
 {
 	public class Engine<T>
 	{

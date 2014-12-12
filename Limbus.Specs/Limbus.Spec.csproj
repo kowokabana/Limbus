@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BF2EC64-751D-4F7A-B046-8CBEC61A36E6}</ProjectGuid>
+    <ProjectGuid>{7A933EB7-3DC4-4913-9749-7A2C958B52B8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Limbus.Control.Test</RootNamespace>
-    <AssemblyName>Limbus.Control.Test</AssemblyName>
+    <RootNamespace>Limbus.Specs</RootNamespace>
+    <AssemblyName>Limbus.Specs</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,45 +29,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="MoreLinq">
-      <HintPath>..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PIDControllerTest.cs" />
+    <Compile Include="Engine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Limbus.Mosquito\Limbus.Mosquito.csproj">
-      <Project>{D53593EE-783C-46D3-8B04-BF4DDB3F7A22}</Project>
-      <Name>Limbus.Mosquito</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Limbus.Clockwork\Limbus.Clockwork.csproj">
       <Project>{1569C6B4-71B2-4AD2-8879-545CFE7B1C7A}</Project>
       <Name>Limbus.Clockwork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Limbus.Control\Limbus.Control.csproj">
-      <Project>{DE7F7ED1-59E3-4FED-95C4-0949AE702105}</Project>
-      <Name>Limbus.Control</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Limbus.Allocation\Limbus.Allocation.csproj">
-      <Project>{FB1FB0FB-C07F-4804-9F9D-35583E8B2E5A}</Project>
-      <Name>Limbus.Allocation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
       <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
       <Name>Limbus.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Limbus.Specs\Limbus.Spec.csproj">
-      <Project>{7A933EB7-3DC4-4913-9749-7A2C958B52B8}</Project>
-      <Name>Limbus.Spec</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Allocation.Test", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.API", "Limbus.API\Limbus.API.csproj", "{267D2B9D-1464-44FC-B96B-8FD67EA7203A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Specs", "Limbus.Specs\Limbus.Specs.csproj", "{7A933EB7-3DC4-4913-9749-7A2C958B52B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Spec", "Limbus.Specs\Limbus.Spec.csproj", "{7A933EB7-3DC4-4913-9749-7A2C958B52B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

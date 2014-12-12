@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Limbus.Specs;
+using Limbus.Spec;
 
 namespace Limbus.Allocation.Test
 {

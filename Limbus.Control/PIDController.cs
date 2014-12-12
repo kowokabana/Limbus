@@ -6,7 +6,7 @@ using MoreLinq;
 using Limbus.Linq;
 using Limbus.Allocation;
 using Limbus.API;
-using Limbus.Specs;
+using Limbus.Spec;
 
 namespace Limbus.Control
 {
