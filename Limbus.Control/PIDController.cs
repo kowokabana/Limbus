@@ -79,7 +79,7 @@ namespace Limbus.Control
 
 		private void Control(DateTimeOffset t, double y)
 		{
-			var dt = (t - t0).TotalMilliseconds; // time past since last add to integral
+			var dt = (t - t0).TotalMilliseconds * 0.0000001; // time past since last add to integral
 			if (dt == 0) return;
 
 			var e = r - y;
