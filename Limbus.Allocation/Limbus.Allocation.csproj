@@ -34,7 +34,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PowerBasedAllocator.cs" />
     <Compile Include="PriceBasedAllocator.cs" />
-    <Compile Include="IAllocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

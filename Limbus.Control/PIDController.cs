@@ -10,8 +10,41 @@ using Limbus.Spec;
 
 namespace Limbus.Control
 {
+	/// <summary>
+	/// PID controller
+	///
+	/// Variables
+	/// 
+	/// r - setpoint
+	/// u - calculated process input variable
+	/// y - process output variable (actual)
+	/// e - error = r-y
+	/// 
+	/// Algorithm
+	/// 
+	/// previous_error = 0
+	/// integral = 0
+	///	start:
+	///	error = setpoint - measured_value
+	///	integral = integral + error*dt
+	///	derivative = (error - previous_error)/dt
+	///	output = Kp*error + Ki*integral + Kd*derivative
+	///	previous_error = error
+	///	wait(dt)
+	///	goto start
+	/// 
+	/// </summary>
 	public class PIDController : IController<double, Engine<double>>, IControllable<double>
 	{
+		private const double kP = 5;
+		private const double kI = 3;
+		private const double kD = 0.01;
+
+		private double r = 0;
+		private double integral = 0;
+		private DateTimeOffset t0;
+		private double e0 = 0;
+
 		private object mutex = new object();
 		private Dictionary<ControlEntity<double, Engine<double>>, Control.Pair> controlledSwarm;
 		private IAllocator<double, Engine<double>> allocator;
@@ -37,16 +70,43 @@ namespace Limbus.Control
 		{
 			lock (mutex) {
 				controlledSwarm[sender].Actual = actual;
+				var y = controlledSwarm.Values.Sum(pair => pair.Actual.Value);
+				Control(actual.Timestamp, y);
 				if (Receive != null)
-					Receive(controlledSwarm.Values.Sum(pair => pair.Actual.Value).At(controlledSwarm.Values.Max(a => a.Actual.Timestamp)));
+					Receive(y.At(controlledSwarm.Values.Max(a => a.Actual.Timestamp)));
 			}
+		}
+
+		private void Control(DateTimeOffset t, double y)
+		{
+			var dt = (t - t0).TotalMilliseconds; // time past since last add to integral
+			if (dt == 0) return;
+
+			var e = r - y;
+			this.integral += e * dt;
+			var derivative = (e - e0) / dt;
+			var u = kP * e + kI * integral + kD * derivative;
+
+			t0 = t;
+			e0 = e;
+
+			Send(u.At(t), false);
 		}
 
 		public event Action<Timestamped<double>> Receive;
 
 		public void Send(Timestamped<double> setpoint)
 		{
+			Send(setpoint, true);
+		}
+
+		private void Send(Timestamped<double> setpoint, bool reset)
+		{
 			lock (mutex) {
+				if (reset) {
+					t0 = setpoint.Timestamp;
+					r = setpoint.Value;
+				}
 				if(!allocator.TryAllocate(controlledSwarm.Keys, setpoint.Value)) return;
 				foreach (var c in controlledSwarm.Keys) {
 					var partialSetpoint = c.Quantity.At(setpoint.Timestamp);

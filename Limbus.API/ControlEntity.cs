@@ -30,6 +30,11 @@ namespace Limbus.API
 
 		public void Allocate(T quantity) { Quantity = quantity; }
 		public T Quantity { get; private set; }
+
+		public override string ToString()
+		{
+			return string.Format("[ControlEntity: Spec={0}, Quantity={1}]", Spec, Quantity);
+		}
 	}
 
 	public static class ControlEntityEx

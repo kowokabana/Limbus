@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Limbus.API;
 
-namespace Limbus.Allocation
+namespace Limbus.API
 {
 	public interface IAllocator<T, T2>
 	{

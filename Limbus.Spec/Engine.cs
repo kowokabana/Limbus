@@ -19,6 +19,11 @@ namespace Limbus.Spec
 			Stages = new SortedSet<T>();
 			Variability = Variability.Continuously;
 		}
+
+		public override string ToString()
+		{
+			return string.Format("[Engine: Stages={0}-{1}, Variability={2}]", Stages.Min, Stages.Max, Variability);
+		}
 	}
 
 	public static class EngineEx

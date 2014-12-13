@@ -35,6 +35,8 @@ namespace Limbus.Control.Test
 			swarm.ForEach(m => clock.Subscribe(m));
 
 			clock.Tick(5.min());
+			while(true) 
+				clock.Tick(1.min());
 			Assert.AreEqual(setpoint, receivedSeries.Last());
 		}
 	}

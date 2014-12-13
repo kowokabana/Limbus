@@ -38,6 +38,8 @@
     <Compile Include="ISpecified.cs" />
     <Compile Include="ISpecifiedAllocatable.cs" />
     <Compile Include="SpecifiedAllocatable.cs" />
+    <Compile Include="IController.cs" />
+    <Compile Include="IAllocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
