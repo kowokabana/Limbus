@@ -38,8 +38,9 @@
     <Compile Include="ISpecified.cs" />
     <Compile Include="ISpecifiedAllocatable.cs" />
     <Compile Include="SpecifiedAllocatable.cs" />
-    <Compile Include="IController.cs" />
     <Compile Include="IAllocator.cs" />
+    <Compile Include="ISwarmController.cs" />
+    <Compile Include="IControlAlgorithm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

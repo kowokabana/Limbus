@@ -27,7 +27,9 @@ namespace Limbus.Control.Test
 			var specifiedSwarm = swarm.Select(m => m.WithSpec(new Engine<double>()
 				{ Gradient = m.Gradient, Stages = new SortedSet<double>() {0.0, 100.0} }));
 
-			var pid = new PIDController(specifiedSwarm, new PowerBasedAllocator());
+			var pid = new SwarmController(
+				specifiedSwarm, new PowerBasedAllocator(), new PIDAlgorithm(0.5, 0.5, 0.5));
+
 			pid.Receive += (t) => receivedSeries.Add(t);
 			pid.Send(setpoint);
 
@@ -35,8 +37,6 @@ namespace Limbus.Control.Test
 			swarm.ForEach(m => clock.Subscribe(m));
 
 			clock.Tick(5.min());
-			while(true) 
-				clock.Tick(1.min());
 			Assert.AreEqual(setpoint, receivedSeries.Last());
 		}
 	}
