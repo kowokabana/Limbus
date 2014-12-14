@@ -46,17 +46,18 @@ namespace Limbus.Control
 			this.kD = kD;
 		}
 
-		public bool TryControl(DateTimeOffset t, double y, out double u)
+		public bool TryControl(Timestamped<double> y, out Timestamped<double> u)
 		{
 			u = y; // this u is never used outside
+			var t = y.Timestamp;
 
 			var dt = (t - t0).TotalMilliseconds * 0.00001; // time past since last add to integral
 			if (dt == 0) return false; //todo: check this
 
-			var e = this.r - y;
+			var e = this.r - y.Value;
 			this.integral += e * dt;
 			var derivative = (e - e0) / dt;
-			u = kP * e + kI * integral; //+ kD * derivative;
+			u = (kP * e + kI * integral).At(t); //+ kD * derivative;
 
 			e0 = e;
 			t0 = t;
@@ -64,10 +65,10 @@ namespace Limbus.Control
 			return true;
 		}
 
-		public void Reset(DateTimeOffset t0, double r)
+		public void Reset(Timestamped<double> r)
 		{
-			this.t0 = t0;
-			this.r = r;
+			this.t0 = r.Timestamp;
+			this.r = r.Value;
 		}
 	}
 }

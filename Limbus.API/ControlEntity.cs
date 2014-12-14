@@ -9,14 +9,8 @@ namespace Limbus.API
 		private IControllable<T> Controllable;
 		public event Action<Timestamped<T>> Receive
 		{
-			add
-			{
-				this.Controllable.Receive += value;
-			}
-			remove
-			{
-				this.Controllable.Receive -= value;
-			}
+			add { this.Controllable.Receive += value; }
+			remove { this.Controllable.Receive -= value; }
 		}
 
 		public void Send(Timestamped<T> setpoint) { this.Controllable.Send(setpoint); }

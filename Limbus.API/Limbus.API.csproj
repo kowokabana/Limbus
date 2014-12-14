@@ -41,6 +41,7 @@
     <Compile Include="IAllocator.cs" />
     <Compile Include="ISwarmController.cs" />
     <Compile Include="IControlAlgorithm.cs" />
+    <Compile Include="IController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

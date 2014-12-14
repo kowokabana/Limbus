@@ -46,13 +46,12 @@ namespace Limbus.Control
 			lock (mutex) {
 				controlledSwarm[sender].Actual = actual;
 
-				var y = controlledSwarm.Values.Sum(pair => pair.Actual.Value);
-				var t = actual.Timestamp;
-				double u;
-				if(algorithm.TryControl(t, y, out u)) Send(u.At(t), false);
+				var y = controlledSwarm.Values.Sum(pair => pair.Actual.Value)
+								.At(controlledSwarm.Values.Max(pair => pair.Actual.Timestamp)); //todo: check if neccessary, or if actual.Timestamp is enough
+				Timestamped<double> u;
+				if(algorithm.TryControl(y, out u)) Send(u, false);
 
-				if (Receive != null)
-					Receive(y.At(controlledSwarm.Values.Max(a => a.Actual.Timestamp)));
+				if (Receive != null) Receive(y); 
 			}
 		}
 
@@ -66,7 +65,7 @@ namespace Limbus.Control
 		private void Send(Timestamped<double> setpoint, bool reset)
 		{
 			lock (mutex) {
-				if (reset) algorithm.Reset(setpoint.Timestamp, setpoint.Value);
+				if (reset) algorithm.Reset(setpoint);
 				if(!allocator.TryAllocate(controlledSwarm.Keys, setpoint.Value)) return;
 				foreach (var c in controlledSwarm.Keys) {
 					var partialSetpoint = c.Quantity.At(setpoint.Timestamp);
