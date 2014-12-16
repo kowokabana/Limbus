@@ -52,12 +52,12 @@ namespace Limbus.Control
 			var t = y.Timestamp;
 
 			var dt = (t - t0).TotalMilliseconds * 0.00001; // time past since last add to integral
-			if (dt == 0) return false; //todo: check this
+			if (dt == 0) return false;
 
 			var e = this.r - y.Value;
 			this.integral += e * dt;
 			var derivative = (e - e0) / dt;
-			u = (kP * e + kI * integral).At(t); //+ kD * derivative;
+			u = (kP * e + kI * integral).At(t); //+ kD * derivative).At(t);
 
 			e0 = e;
 			t0 = t;
@@ -67,6 +67,8 @@ namespace Limbus.Control
 
 		public void Reset(Timestamped<double> r)
 		{
+			this.integral = 0;
+			this.e0 = 0;
 			this.t0 = r.Timestamp;
 			this.r = r.Value;
 		}

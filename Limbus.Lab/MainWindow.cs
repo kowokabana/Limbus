@@ -9,10 +9,13 @@ using OxyPlot;
 using OxyPlot.Axes;
 using System.Linq;
 using MoreLinq;
+using Limbus.Control;
+using Limbus.API;
 
 public partial class MainWindow: Gtk.Window
 {
 	private Delayer<double> delayedMock;
+	private IControllable<double> controlledMock;
 	private Clock clock;
 	private int speed = 1000;
 	private TimePlot timePlot;
@@ -21,20 +24,20 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build();
 
-		var linearMock = new LinearMosquito(2.0.In(1.min()), DateTimeOffset.UtcNow);
-		delayedMock = linearMock.WithDelay(5.min());
+		var linearMock = new LinearMosquito(10.0.In(1.min()), DateTimeOffset.UtcNow);
+		controlledMock = linearMock.ControlledBy(new PIDAlgorithm(0.5, 1, 0.5));//WithDelay(5.min());
 		var tStart = DateTimeOffset.UtcNow;
 
 		clock = new Clock(tStart);
 		clock.Subscribe(linearMock);
-		clock.Subscribe(delayedMock);
+		//clock.Subscribe(delayedMock);
 
 		timePlot = new TimePlot ("Mosquito Plot", 50, tStart);
 
 		// this stuff runs in another task
 		linearMock.Receive += (ts) => {
-			timePlot.AddPoint(0, ts);
-			timePlot.InvalidatePlot (true);
+			timePlot.AddActual(ts);
+			timePlot.InvalidatePlot(true);
 		};
 
 		Task.Run (() => {
@@ -55,25 +58,25 @@ public partial class MainWindow: Gtk.Window
 		vbxPlot.Add(plotView);
 	}
 
-	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
+		Application.Quit();
 		a.RetVal = true;
 	}
 
-	protected void vScaleSetpoint_Changed (object sender, EventArgs e)
+	protected void vScaleSetpoint_Changed(object sender, EventArgs e)
 	{
-		var setpoint = vscaleSetpoint.Value.At(clock.Time).At(clock.Time);
-		delayedMock.Send(setpoint);
-		this.timePlot.AddPoint(1, setpoint.Value);
+		var setpoint = vscaleSetpoint.Value.At(clock.Time);//.At(clock.Time);
+		controlledMock.Send(setpoint);
+		this.timePlot.AddSetpoint(setpoint.Value);//.Value);
 	}
 
-	protected void vScaleSpeed_Changed (object sender, EventArgs e)
+	protected void vScaleSpeed_Changed(object sender, EventArgs e)
 	{
 		this.speed = (int)vscaleSpeed.Value;
 	}
 
-	protected void vscaleDeadTime_Changed (object sender, EventArgs e)
+	protected void vscaleDeadTime_Changed(object sender, EventArgs e)
 	{
 		//mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}

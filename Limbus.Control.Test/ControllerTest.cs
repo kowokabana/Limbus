@@ -19,7 +19,7 @@ namespace Limbus.Control.Test
 		{
 			var receivedSeries = new List<Timestamped<double>>();
 			var t0 = 0.AsMinute();
-			var setpoint = 10.0.At(t0.Add(5.min()));
+			var setpoint = 10.0.At(t0);//.Add(5.min()));
 			var pid = new PIDAlgorithm(0.5, 0.5, 0.5);
 
 			var mosquito = new LinearMosquito(2.0.In(1.min()), t0);
@@ -32,6 +32,7 @@ namespace Limbus.Control.Test
 			clock.Subscribe(mosquito);
 
 			clock.Tick(5.min());
+			//while (true) clock.Tick(1.min());
 			Assert.AreEqual(setpoint, receivedSeries.Last());
 		}
 

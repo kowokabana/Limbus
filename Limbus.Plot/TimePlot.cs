@@ -15,11 +15,18 @@ namespace Limbus.Plot
 		public DateTimeAxis TimeAxis { get; private set; }
 
 		private int width = 50;
+		private double setpoint = 0;
 
-		public void AddPoint(int line, Timestamped<double> point)
+		public void AddActual(Timestamped<double> point)
 		{
-			this.Lines[line].Points.Add (DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, point.Value));
-			if(this.Lines[line].Points.Count > width) this.Lines[line].Points.RemoveAt(0);
+			this.Lines[0].Points.Add(DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, point.Value));
+			this.Lines[1].Points.Add(DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, setpoint));
+			if (this.Lines[0].Points.Count > width) this.Lines.ForEach(l => l.Points.RemoveAt(0));				
+		}
+
+		public void AddSetpoint(double setpoint)
+		{
+			this.setpoint = setpoint;
 		}
 
 		public TimePlot (string title, int width, DateTimeOffset start)
@@ -59,7 +66,7 @@ namespace Limbus.Plot
 				DataFieldY = "Y", 
 				Color = OxyColors.Blue,
 				MarkerType = MarkerType.Circle,
-				MarkerSize = 2,
+				MarkerSize = 1,
 				MarkerStroke = OxyColors.Black,
 				MarkerFill = OxyColors.Black,
 				MarkerStrokeThickness = 1.5
@@ -70,7 +77,7 @@ namespace Limbus.Plot
 				DataFieldX = "X",
 				DataFieldY = "Y", 
 				Color = OxyColors.Red,
-				MarkerType = MarkerType.Circle,
+				MarkerType = MarkerType.None,
 				MarkerSize = 2,
 				MarkerStroke = OxyColors.Black,
 				MarkerFill = OxyColors.Black,
@@ -83,7 +90,7 @@ namespace Limbus.Plot
 			this.Series.Add(setpoints);
 
 			for (int i = 0; i <= width; i++) {
-				AddPoint(0, 0.0.At(start.AddMinutes(-width).AddMinutes(i)));
+				AddActual(0.0.At(start.AddMinutes(-width).AddMinutes(i)));
 			}
 		}
 	}
