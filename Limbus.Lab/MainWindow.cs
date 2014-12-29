@@ -11,6 +11,7 @@ using System.Linq;
 using MoreLinq;
 using Limbus.Control;
 using Limbus.API;
+using Limbus.Arduino;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -24,21 +25,30 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build();
 
-		nodeViewAnalogs.AppendColumn ("Artist", new Gtk.CellRendererText (), "text", 0);
-		nodeViewAnalogs.AppendColumn ("Song Title", new Gtk.CellRendererText (), "text", 1);
-		nodeViewAnalogs.ShowAll ();
+		//nodeViewAnalogs.AppendColumn ("Artist", new Gtk.CellRendererText (), "text", 0);
+		//nodeViewAnalogs.AppendColumn ("Song Title", new Gtk.CellRendererText (), "text", 1);
+		//nodeViewAnalogs.ShowAll ();
 
 		var t0 = DateTimeOffset.UtcNow;
 		timePlot = new TimePlot("Plot", 50, t0);
 		//HostPID(t0, timePlot);
 
-		var plotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
+		var arduino = new Driver();
+		var potVal = arduino.AddPin("potVal: ");
 
-		plotView.SetSizeRequest(1000, 200);
-		plotView.Visible = true;
+		potVal.Receive += (ts) => {
+			this.timePlot.AddActual(ts);
+			this.timePlot.InvalidatePlot(true);
+		};
+		
+		var timePlotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
+		timePlotView.SetSizeRequest(1000, 200);
+		timePlotView.Visible = true;
 
 		this.SetSizeRequest(1000, 600);
-		vbxPlot.Add(plotView);
+		vbxPlot.Add(timePlotView);
+
+		arduino.Connect("/dev/tty.usbmodem1421", 9600);
 	}
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)

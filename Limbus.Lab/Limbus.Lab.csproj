@@ -49,7 +49,6 @@
     <Reference Include="atk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Mono.Posix" />
     <Reference Include="OxyPlot">
       <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
@@ -59,6 +58,7 @@
     <Reference Include="MoreLinq">
       <HintPath>..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -96,6 +96,10 @@
     <ProjectReference Include="..\Limbus.API\Limbus.API.csproj">
       <Project>{267D2B9D-1464-44FC-B96B-8FD67EA7203A}</Project>
       <Name>Limbus.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.Arduino\Limbus.Arduino.csproj">
+      <Project>{B5AC49C1-8695-4A93-AB34-6D958B5B69F1}</Project>
+      <Name>Limbus.Arduino</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
