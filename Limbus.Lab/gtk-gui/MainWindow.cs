@@ -3,46 +3,141 @@
 
 public partial class MainWindow
 {
+	private global::Gtk.UIManager UIManager;
+	
+	private global::Gtk.Action saveAction;
+	
+	private global::Gtk.Action FileAction;
+	
+	private global::Gtk.Action OpenAction;
+	
+	private global::Gtk.Action SaveAction;
+	
+	private global::Gtk.Action SaveAsAction;
+	
+	private global::Gtk.Action ExitAction;
+	
 	private global::Gtk.VBox vbxMain;
+	
+	private global::Gtk.MenuBar menubar2;
+	
+	private global::Gtk.Toolbar toolbar1;
 	
 	private global::Gtk.VBox vbxPlot;
 	
 	private global::Gtk.HBox hbxMixer;
 	
-	private global::Gtk.VBox vbox4;
+	private global::Gtk.VBox vbxPoti1;
 	
-	private global::Gtk.VScale vscaleSetpoint;
+	private global::Gtk.ToggleButton btnPotiOnOff1;
 	
-	private global::Gtk.Label lblSetpoint;
+	private global::Gtk.Entry edPoti1;
 	
-	private global::Gtk.VBox vbox3;
+	private global::Gtk.VScale vscalePoti1;
 	
-	private global::Gtk.VScale vscaleDeadTime;
+	private global::Gtk.Label lblPoti1;
 	
-	private global::Gtk.Label lblDeadTime;
+	private global::Gtk.VBox vbxPoti2;
 	
-	private global::Gtk.VBox vbox1;
+	private global::Gtk.ToggleButton btnPotiOnOff2;
 	
-	private global::Gtk.VScale vscaleSpeed;
+	private global::Gtk.Entry edPoti2;
 	
-	private global::Gtk.Label lblDeadTime1;
+	private global::Gtk.VScale vscalePoti2;
 	
-	private global::Gtk.VBox vbox2;
+	private global::Gtk.Label lblPoti2;
 	
-	private global::Gtk.VScale vscaleDeadTime2;
+	private global::Gtk.VBox vbxPoti3;
 	
-	private global::Gtk.Label lblDeadTime2;
+	private global::Gtk.ToggleButton btnPotiOnOff3;
 	
-	private global::Gtk.VBox vbox5;
+	private global::Gtk.Entry edPoti3;
 	
-	private global::Gtk.VScale vscaleDeadTime3;
+	private global::Gtk.VScale vscalePoti3;
 	
-	private global::Gtk.Label lblDeadTime3;
+	private global::Gtk.Label lblPoti3;
+	
+	private global::Gtk.VBox vbxPoti4;
+	
+	private global::Gtk.ToggleButton btnPotiOnOff4;
+	
+	private global::Gtk.Entry edPoti4;
+	
+	private global::Gtk.VScale vscalePoti4;
+	
+	private global::Gtk.Label lblPoti4;
+	
+	private global::Gtk.VBox vbxPoti5;
+	
+	private global::Gtk.ToggleButton btnPotiOnOff5;
+	
+	private global::Gtk.Entry edPoti5;
+	
+	private global::Gtk.VScale vscalePoti5;
+	
+	private global::Gtk.Label lblPoti5;
+	
+	private global::Gtk.VSeparator vseparator1;
+	
+	private global::Gtk.VBox vbxDigitals;
+	
+	private global::Gtk.ToggleButton bntD1;
+	
+	private global::Gtk.ToggleButton btnD2;
+	
+	private global::Gtk.ToggleButton btnD3;
+	
+	private global::Gtk.ToggleButton btnD4;
+	
+	private global::Gtk.ToggleButton btnD5;
+	
+	private global::Gtk.VSeparator vseparator2;
+	
+	private global::Gtk.VBox vbxButtons;
+	
+	private global::Gtk.Button btnB1;
+	
+	private global::Gtk.Button btnB2;
+	
+	private global::Gtk.Button btnB3;
+	
+	private global::Gtk.Button btnB4;
+	
+	private global::Gtk.Button btnB5;
+	
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	
+	private global::Gtk.NodeView nodeViewAnalogs;
+	
+	private global::Gtk.ScrolledWindow txtConsole1;
+	
+	private global::Gtk.TextView txtConsole;
 
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
+		this.UIManager = new global::Gtk.UIManager ();
+		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
+		this.saveAction = new global::Gtk.Action ("saveAction", null, null, "gtk-save");
+		w1.Add (this.saveAction, null);
+		this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
+		this.FileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
+		w1.Add (this.FileAction, null);
+		this.OpenAction = new global::Gtk.Action ("OpenAction", global::Mono.Unix.Catalog.GetString ("Open"), null, null);
+		this.OpenAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
+		w1.Add (this.OpenAction, null);
+		this.SaveAction = new global::Gtk.Action ("SaveAction", global::Mono.Unix.Catalog.GetString ("Save"), null, null);
+		this.SaveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save");
+		w1.Add (this.SaveAction, null);
+		this.SaveAsAction = new global::Gtk.Action ("SaveAsAction", global::Mono.Unix.Catalog.GetString ("Save as.."), null, null);
+		this.SaveAsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save as..");
+		w1.Add (this.SaveAsAction, null);
+		this.ExitAction = new global::Gtk.Action ("ExitAction", global::Mono.Unix.Catalog.GetString ("Exit"), null, null);
+		this.ExitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
+		w1.Add (this.ExitAction, null);
+		this.UIManager.InsertActionGroup (w1, 0);
+		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("Limbus Laboratory");
 		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-execute", global::Gtk.IconSize.Menu);
@@ -52,192 +147,525 @@ public partial class MainWindow
 		this.vbxMain.Name = "vbxMain";
 		this.vbxMain.Spacing = 6;
 		// Container child vbxMain.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString ("<ui><menubar name='menubar2'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/><menuitem name='ExitAction' action='ExitAction'/></menu></menubar></ui>");
+		this.menubar2 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar2")));
+		this.menubar2.Name = "menubar2";
+		this.vbxMain.Add (this.menubar2);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.menubar2]));
+		w2.Position = 0;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vbxMain.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='saveAction' action='saveAction'/></toolbar></ui>");
+		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
+		this.toolbar1.Name = "toolbar1";
+		this.toolbar1.ShowArrow = false;
+		this.vbxMain.Add (this.toolbar1);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.toolbar1]));
+		w3.Position = 1;
+		w3.Expand = false;
+		w3.Fill = false;
+		// Container child vbxMain.Gtk.Box+BoxChild
 		this.vbxPlot = new global::Gtk.VBox ();
 		this.vbxPlot.Name = "vbxPlot";
 		this.vbxPlot.Spacing = 6;
 		this.vbxMain.Add (this.vbxPlot);
-		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.vbxPlot]));
-		w1.Position = 0;
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.vbxPlot]));
+		w4.Position = 2;
 		// Container child vbxMain.Gtk.Box+BoxChild
 		this.hbxMixer = new global::Gtk.HBox ();
 		this.hbxMixer.Name = "hbxMixer";
 		this.hbxMixer.Spacing = 6;
 		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.vbox4 = new global::Gtk.VBox ();
-		this.vbox4.Name = "vbox4";
-		this.vbox4.Spacing = 6;
-		// Container child vbox4.Gtk.Box+BoxChild
-		this.vscaleSetpoint = new global::Gtk.VScale (null);
-		this.vscaleSetpoint.CanFocus = true;
-		this.vscaleSetpoint.Name = "vscaleSetpoint";
-		this.vscaleSetpoint.UpdatePolicy = ((global::Gtk.UpdateType)(2));
-		this.vscaleSetpoint.Inverted = true;
-		this.vscaleSetpoint.Adjustment.Lower = -100;
-		this.vscaleSetpoint.Adjustment.Upper = 100;
-		this.vscaleSetpoint.Adjustment.PageIncrement = 10;
-		this.vscaleSetpoint.Adjustment.StepIncrement = 1;
-		this.vscaleSetpoint.Adjustment.Value = 15;
-		this.vscaleSetpoint.DrawValue = true;
-		this.vscaleSetpoint.Digits = 0;
-		this.vscaleSetpoint.ValuePos = ((global::Gtk.PositionType)(2));
-		this.vbox4.Add (this.vscaleSetpoint);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.vscaleSetpoint]));
-		w2.Position = 0;
-		// Container child vbox4.Gtk.Box+BoxChild
-		this.lblSetpoint = new global::Gtk.Label ();
-		this.lblSetpoint.Name = "lblSetpoint";
-		this.lblSetpoint.LabelProp = global::Mono.Unix.Catalog.GetString ("Setpoint");
-		this.vbox4.Add (this.lblSetpoint);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.lblSetpoint]));
-		w3.Position = 1;
-		w3.Expand = false;
-		w3.Fill = false;
-		this.hbxMixer.Add (this.vbox4);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox4]));
-		w4.Position = 0;
-		w4.Expand = false;
-		w4.Fill = false;
-		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.vbox3 = new global::Gtk.VBox ();
-		this.vbox3.Name = "vbox3";
-		this.vbox3.Spacing = 6;
-		// Container child vbox3.Gtk.Box+BoxChild
-		this.vscaleDeadTime = new global::Gtk.VScale (null);
-		this.vscaleDeadTime.CanFocus = true;
-		this.vscaleDeadTime.Name = "vscaleDeadTime";
-		this.vscaleDeadTime.Inverted = true;
-		this.vscaleDeadTime.Adjustment.Upper = 100;
-		this.vscaleDeadTime.Adjustment.PageIncrement = 10;
-		this.vscaleDeadTime.Adjustment.StepIncrement = 1;
-		this.vscaleDeadTime.DrawValue = true;
-		this.vscaleDeadTime.Digits = 0;
-		this.vscaleDeadTime.ValuePos = ((global::Gtk.PositionType)(2));
-		this.vbox3.Add (this.vscaleDeadTime);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vscaleDeadTime]));
+		this.vbxPoti1 = new global::Gtk.VBox ();
+		this.vbxPoti1.Name = "vbxPoti1";
+		this.vbxPoti1.Spacing = 6;
+		// Container child vbxPoti1.Gtk.Box+BoxChild
+		this.btnPotiOnOff1 = new global::Gtk.ToggleButton ();
+		this.btnPotiOnOff1.CanFocus = true;
+		this.btnPotiOnOff1.Name = "btnPotiOnOff1";
+		this.btnPotiOnOff1.UseUnderline = true;
+		this.btnPotiOnOff1.Active = true;
+		this.btnPotiOnOff1.Label = global::Mono.Unix.Catalog.GetString ("On/Off");
+		this.vbxPoti1.Add (this.btnPotiOnOff1);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbxPoti1 [this.btnPotiOnOff1]));
 		w5.Position = 0;
-		// Container child vbox3.Gtk.Box+BoxChild
-		this.lblDeadTime = new global::Gtk.Label ();
-		this.lblDeadTime.Name = "lblDeadTime";
-		this.lblDeadTime.LabelProp = global::Mono.Unix.Catalog.GetString ("DeadTime");
-		this.vbox3.Add (this.lblDeadTime);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.lblDeadTime]));
+		w5.Expand = false;
+		w5.Fill = false;
+		// Container child vbxPoti1.Gtk.Box+BoxChild
+		this.edPoti1 = new global::Gtk.Entry ();
+		this.edPoti1.WidthRequest = 50;
+		this.edPoti1.Sensitive = false;
+		this.edPoti1.CanFocus = true;
+		this.edPoti1.Name = "edPoti1";
+		this.edPoti1.IsEditable = true;
+		this.edPoti1.InvisibleChar = '●';
+		this.vbxPoti1.Add (this.edPoti1);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbxPoti1 [this.edPoti1]));
 		w6.Position = 1;
 		w6.Expand = false;
 		w6.Fill = false;
-		this.hbxMixer.Add (this.vbox3);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox3]));
-		w7.Position = 1;
-		w7.Expand = false;
-		w7.Fill = false;
-		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.vbox1 = new global::Gtk.VBox ();
-		this.vbox1.Name = "vbox1";
-		this.vbox1.Spacing = 6;
-		// Container child vbox1.Gtk.Box+BoxChild
-		this.vscaleSpeed = new global::Gtk.VScale (null);
-		this.vscaleSpeed.CanFocus = true;
-		this.vscaleSpeed.Name = "vscaleSpeed";
-		this.vscaleSpeed.Adjustment.Upper = 5000;
-		this.vscaleSpeed.Adjustment.PageIncrement = 10;
-		this.vscaleSpeed.Adjustment.StepIncrement = 1;
-		this.vscaleSpeed.Adjustment.Value = 1000;
-		this.vscaleSpeed.DrawValue = true;
-		this.vscaleSpeed.Digits = 0;
-		this.vscaleSpeed.ValuePos = ((global::Gtk.PositionType)(2));
-		this.vbox1.Add (this.vscaleSpeed);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.vscaleSpeed]));
-		w8.Position = 0;
-		// Container child vbox1.Gtk.Box+BoxChild
-		this.lblDeadTime1 = new global::Gtk.Label ();
-		this.lblDeadTime1.Name = "lblDeadTime1";
-		this.lblDeadTime1.LabelProp = global::Mono.Unix.Catalog.GetString ("Speed");
-		this.vbox1.Add (this.lblDeadTime1);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblDeadTime1]));
-		w9.Position = 1;
+		// Container child vbxPoti1.Gtk.Box+BoxChild
+		this.vscalePoti1 = new global::Gtk.VScale (null);
+		this.vscalePoti1.CanFocus = true;
+		this.vscalePoti1.Name = "vscalePoti1";
+		this.vscalePoti1.UpdatePolicy = ((global::Gtk.UpdateType)(2));
+		this.vscalePoti1.Inverted = true;
+		this.vscalePoti1.Adjustment.Upper = 255;
+		this.vscalePoti1.Adjustment.PageIncrement = 10;
+		this.vscalePoti1.Adjustment.StepIncrement = 1;
+		this.vscalePoti1.Adjustment.Value = 15;
+		this.vscalePoti1.DrawValue = false;
+		this.vscalePoti1.Digits = 0;
+		this.vscalePoti1.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbxPoti1.Add (this.vscalePoti1);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbxPoti1 [this.vscalePoti1]));
+		w7.Position = 2;
+		// Container child vbxPoti1.Gtk.Box+BoxChild
+		this.lblPoti1 = new global::Gtk.Label ();
+		this.lblPoti1.Name = "lblPoti1";
+		this.lblPoti1.LabelProp = global::Mono.Unix.Catalog.GetString ("Poti1");
+		this.vbxPoti1.Add (this.lblPoti1);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbxPoti1 [this.lblPoti1]));
+		w8.Position = 3;
+		w8.Expand = false;
+		w8.Fill = false;
+		this.hbxMixer.Add (this.vbxPoti1);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxPoti1]));
+		w9.Position = 0;
 		w9.Expand = false;
 		w9.Fill = false;
-		this.hbxMixer.Add (this.vbox1);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox1]));
-		w10.Position = 2;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbxPoti2 = new global::Gtk.VBox ();
+		this.vbxPoti2.Name = "vbxPoti2";
+		this.vbxPoti2.Spacing = 6;
+		// Container child vbxPoti2.Gtk.Box+BoxChild
+		this.btnPotiOnOff2 = new global::Gtk.ToggleButton ();
+		this.btnPotiOnOff2.CanFocus = true;
+		this.btnPotiOnOff2.Name = "btnPotiOnOff2";
+		this.btnPotiOnOff2.UseUnderline = true;
+		this.btnPotiOnOff2.Active = true;
+		this.btnPotiOnOff2.Label = global::Mono.Unix.Catalog.GetString ("On/Off");
+		this.vbxPoti2.Add (this.btnPotiOnOff2);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbxPoti2 [this.btnPotiOnOff2]));
+		w10.Position = 0;
 		w10.Expand = false;
 		w10.Fill = false;
-		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.vbox2 = new global::Gtk.VBox ();
-		this.vbox2.Name = "vbox2";
-		this.vbox2.Spacing = 6;
-		// Container child vbox2.Gtk.Box+BoxChild
-		this.vscaleDeadTime2 = new global::Gtk.VScale (null);
-		this.vscaleDeadTime2.CanFocus = true;
-		this.vscaleDeadTime2.Name = "vscaleDeadTime2";
-		this.vscaleDeadTime2.Inverted = true;
-		this.vscaleDeadTime2.Adjustment.Upper = 100;
-		this.vscaleDeadTime2.Adjustment.PageIncrement = 10;
-		this.vscaleDeadTime2.Adjustment.StepIncrement = 1;
-		this.vscaleDeadTime2.DrawValue = true;
-		this.vscaleDeadTime2.Digits = 0;
-		this.vscaleDeadTime2.ValuePos = ((global::Gtk.PositionType)(2));
-		this.vbox2.Add (this.vscaleDeadTime2);
-		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vscaleDeadTime2]));
-		w11.Position = 0;
-		// Container child vbox2.Gtk.Box+BoxChild
-		this.lblDeadTime2 = new global::Gtk.Label ();
-		this.lblDeadTime2.Name = "lblDeadTime2";
-		this.lblDeadTime2.LabelProp = global::Mono.Unix.Catalog.GetString ("?");
-		this.vbox2.Add (this.lblDeadTime2);
-		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblDeadTime2]));
-		w12.Position = 1;
-		w12.Expand = false;
-		w12.Fill = false;
-		this.hbxMixer.Add (this.vbox2);
-		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox2]));
+		// Container child vbxPoti2.Gtk.Box+BoxChild
+		this.edPoti2 = new global::Gtk.Entry ();
+		this.edPoti2.WidthRequest = 50;
+		this.edPoti2.Sensitive = false;
+		this.edPoti2.CanFocus = true;
+		this.edPoti2.Name = "edPoti2";
+		this.edPoti2.IsEditable = true;
+		this.edPoti2.InvisibleChar = '●';
+		this.vbxPoti2.Add (this.edPoti2);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbxPoti2 [this.edPoti2]));
+		w11.Position = 1;
+		w11.Expand = false;
+		w11.Fill = false;
+		// Container child vbxPoti2.Gtk.Box+BoxChild
+		this.vscalePoti2 = new global::Gtk.VScale (null);
+		this.vscalePoti2.CanFocus = true;
+		this.vscalePoti2.Name = "vscalePoti2";
+		this.vscalePoti2.UpdatePolicy = ((global::Gtk.UpdateType)(2));
+		this.vscalePoti2.Inverted = true;
+		this.vscalePoti2.Adjustment.Upper = 255;
+		this.vscalePoti2.Adjustment.PageIncrement = 10;
+		this.vscalePoti2.Adjustment.StepIncrement = 1;
+		this.vscalePoti2.Adjustment.Value = 15;
+		this.vscalePoti2.DrawValue = false;
+		this.vscalePoti2.Digits = 0;
+		this.vscalePoti2.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbxPoti2.Add (this.vscalePoti2);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbxPoti2 [this.vscalePoti2]));
+		w12.Position = 2;
+		// Container child vbxPoti2.Gtk.Box+BoxChild
+		this.lblPoti2 = new global::Gtk.Label ();
+		this.lblPoti2.Name = "lblPoti2";
+		this.lblPoti2.LabelProp = global::Mono.Unix.Catalog.GetString ("Poti2");
+		this.vbxPoti2.Add (this.lblPoti2);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbxPoti2 [this.lblPoti2]));
 		w13.Position = 3;
 		w13.Expand = false;
 		w13.Fill = false;
+		this.hbxMixer.Add (this.vbxPoti2);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxPoti2]));
+		w14.Position = 1;
+		w14.Expand = false;
+		w14.Fill = false;
 		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.vbox5 = new global::Gtk.VBox ();
-		this.vbox5.Name = "vbox5";
-		this.vbox5.Spacing = 6;
-		// Container child vbox5.Gtk.Box+BoxChild
-		this.vscaleDeadTime3 = new global::Gtk.VScale (null);
-		this.vscaleDeadTime3.CanFocus = true;
-		this.vscaleDeadTime3.Name = "vscaleDeadTime3";
-		this.vscaleDeadTime3.Inverted = true;
-		this.vscaleDeadTime3.Adjustment.Upper = 100;
-		this.vscaleDeadTime3.Adjustment.PageIncrement = 10;
-		this.vscaleDeadTime3.Adjustment.StepIncrement = 1;
-		this.vscaleDeadTime3.DrawValue = true;
-		this.vscaleDeadTime3.Digits = 0;
-		this.vscaleDeadTime3.ValuePos = ((global::Gtk.PositionType)(2));
-		this.vbox5.Add (this.vscaleDeadTime3);
-		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.vscaleDeadTime3]));
-		w14.Position = 0;
-		// Container child vbox5.Gtk.Box+BoxChild
-		this.lblDeadTime3 = new global::Gtk.Label ();
-		this.lblDeadTime3.Name = "lblDeadTime3";
-		this.lblDeadTime3.LabelProp = global::Mono.Unix.Catalog.GetString ("?");
-		this.vbox5.Add (this.lblDeadTime3);
-		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.lblDeadTime3]));
-		w15.Position = 1;
+		this.vbxPoti3 = new global::Gtk.VBox ();
+		this.vbxPoti3.Name = "vbxPoti3";
+		this.vbxPoti3.Spacing = 6;
+		// Container child vbxPoti3.Gtk.Box+BoxChild
+		this.btnPotiOnOff3 = new global::Gtk.ToggleButton ();
+		this.btnPotiOnOff3.CanFocus = true;
+		this.btnPotiOnOff3.Name = "btnPotiOnOff3";
+		this.btnPotiOnOff3.UseUnderline = true;
+		this.btnPotiOnOff3.Active = true;
+		this.btnPotiOnOff3.Label = global::Mono.Unix.Catalog.GetString ("On/Off");
+		this.vbxPoti3.Add (this.btnPotiOnOff3);
+		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbxPoti3 [this.btnPotiOnOff3]));
+		w15.Position = 0;
 		w15.Expand = false;
 		w15.Fill = false;
-		this.hbxMixer.Add (this.vbox5);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbox5]));
-		w16.Position = 4;
+		// Container child vbxPoti3.Gtk.Box+BoxChild
+		this.edPoti3 = new global::Gtk.Entry ();
+		this.edPoti3.WidthRequest = 50;
+		this.edPoti3.Sensitive = false;
+		this.edPoti3.CanFocus = true;
+		this.edPoti3.Name = "edPoti3";
+		this.edPoti3.IsEditable = true;
+		this.edPoti3.InvisibleChar = '●';
+		this.vbxPoti3.Add (this.edPoti3);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbxPoti3 [this.edPoti3]));
+		w16.Position = 1;
 		w16.Expand = false;
 		w16.Fill = false;
+		// Container child vbxPoti3.Gtk.Box+BoxChild
+		this.vscalePoti3 = new global::Gtk.VScale (null);
+		this.vscalePoti3.CanFocus = true;
+		this.vscalePoti3.Name = "vscalePoti3";
+		this.vscalePoti3.UpdatePolicy = ((global::Gtk.UpdateType)(2));
+		this.vscalePoti3.Inverted = true;
+		this.vscalePoti3.Adjustment.Upper = 255;
+		this.vscalePoti3.Adjustment.PageIncrement = 10;
+		this.vscalePoti3.Adjustment.StepIncrement = 1;
+		this.vscalePoti3.DrawValue = false;
+		this.vscalePoti3.Digits = 0;
+		this.vscalePoti3.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbxPoti3.Add (this.vscalePoti3);
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbxPoti3 [this.vscalePoti3]));
+		w17.Position = 2;
+		// Container child vbxPoti3.Gtk.Box+BoxChild
+		this.lblPoti3 = new global::Gtk.Label ();
+		this.lblPoti3.Name = "lblPoti3";
+		this.lblPoti3.LabelProp = global::Mono.Unix.Catalog.GetString ("Poti3");
+		this.vbxPoti3.Add (this.lblPoti3);
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbxPoti3 [this.lblPoti3]));
+		w18.Position = 3;
+		w18.Expand = false;
+		w18.Fill = false;
+		this.hbxMixer.Add (this.vbxPoti3);
+		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxPoti3]));
+		w19.Position = 2;
+		w19.Expand = false;
+		w19.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbxPoti4 = new global::Gtk.VBox ();
+		this.vbxPoti4.Name = "vbxPoti4";
+		this.vbxPoti4.Spacing = 6;
+		// Container child vbxPoti4.Gtk.Box+BoxChild
+		this.btnPotiOnOff4 = new global::Gtk.ToggleButton ();
+		this.btnPotiOnOff4.CanFocus = true;
+		this.btnPotiOnOff4.Name = "btnPotiOnOff4";
+		this.btnPotiOnOff4.UseUnderline = true;
+		this.btnPotiOnOff4.Active = true;
+		this.btnPotiOnOff4.Label = global::Mono.Unix.Catalog.GetString ("On/Off");
+		this.vbxPoti4.Add (this.btnPotiOnOff4);
+		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbxPoti4 [this.btnPotiOnOff4]));
+		w20.Position = 0;
+		w20.Expand = false;
+		w20.Fill = false;
+		// Container child vbxPoti4.Gtk.Box+BoxChild
+		this.edPoti4 = new global::Gtk.Entry ();
+		this.edPoti4.WidthRequest = 50;
+		this.edPoti4.Sensitive = false;
+		this.edPoti4.CanFocus = true;
+		this.edPoti4.Name = "edPoti4";
+		this.edPoti4.IsEditable = true;
+		this.edPoti4.InvisibleChar = '●';
+		this.vbxPoti4.Add (this.edPoti4);
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbxPoti4 [this.edPoti4]));
+		w21.Position = 1;
+		w21.Expand = false;
+		w21.Fill = false;
+		// Container child vbxPoti4.Gtk.Box+BoxChild
+		this.vscalePoti4 = new global::Gtk.VScale (null);
+		this.vscalePoti4.CanFocus = true;
+		this.vscalePoti4.Name = "vscalePoti4";
+		this.vscalePoti4.UpdatePolicy = ((global::Gtk.UpdateType)(2));
+		this.vscalePoti4.Inverted = true;
+		this.vscalePoti4.Adjustment.Upper = 255;
+		this.vscalePoti4.Adjustment.PageIncrement = 10;
+		this.vscalePoti4.Adjustment.StepIncrement = 1;
+		this.vscalePoti4.Adjustment.Value = 15;
+		this.vscalePoti4.DrawValue = false;
+		this.vscalePoti4.Digits = 0;
+		this.vscalePoti4.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbxPoti4.Add (this.vscalePoti4);
+		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbxPoti4 [this.vscalePoti4]));
+		w22.Position = 2;
+		// Container child vbxPoti4.Gtk.Box+BoxChild
+		this.lblPoti4 = new global::Gtk.Label ();
+		this.lblPoti4.Name = "lblPoti4";
+		this.lblPoti4.LabelProp = global::Mono.Unix.Catalog.GetString ("Poti4");
+		this.vbxPoti4.Add (this.lblPoti4);
+		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbxPoti4 [this.lblPoti4]));
+		w23.Position = 3;
+		w23.Expand = false;
+		w23.Fill = false;
+		this.hbxMixer.Add (this.vbxPoti4);
+		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxPoti4]));
+		w24.Position = 3;
+		w24.Expand = false;
+		w24.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbxPoti5 = new global::Gtk.VBox ();
+		this.vbxPoti5.Name = "vbxPoti5";
+		this.vbxPoti5.Spacing = 6;
+		// Container child vbxPoti5.Gtk.Box+BoxChild
+		this.btnPotiOnOff5 = new global::Gtk.ToggleButton ();
+		this.btnPotiOnOff5.CanFocus = true;
+		this.btnPotiOnOff5.Name = "btnPotiOnOff5";
+		this.btnPotiOnOff5.UseUnderline = true;
+		this.btnPotiOnOff5.Active = true;
+		this.btnPotiOnOff5.Label = global::Mono.Unix.Catalog.GetString ("On/Off");
+		this.vbxPoti5.Add (this.btnPotiOnOff5);
+		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbxPoti5 [this.btnPotiOnOff5]));
+		w25.Position = 0;
+		w25.Expand = false;
+		w25.Fill = false;
+		// Container child vbxPoti5.Gtk.Box+BoxChild
+		this.edPoti5 = new global::Gtk.Entry ();
+		this.edPoti5.WidthRequest = 50;
+		this.edPoti5.Sensitive = false;
+		this.edPoti5.CanFocus = true;
+		this.edPoti5.Name = "edPoti5";
+		this.edPoti5.IsEditable = true;
+		this.edPoti5.InvisibleChar = '●';
+		this.vbxPoti5.Add (this.edPoti5);
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbxPoti5 [this.edPoti5]));
+		w26.Position = 1;
+		w26.Expand = false;
+		w26.Fill = false;
+		// Container child vbxPoti5.Gtk.Box+BoxChild
+		this.vscalePoti5 = new global::Gtk.VScale (null);
+		this.vscalePoti5.CanFocus = true;
+		this.vscalePoti5.Name = "vscalePoti5";
+		this.vscalePoti5.UpdatePolicy = ((global::Gtk.UpdateType)(2));
+		this.vscalePoti5.Inverted = true;
+		this.vscalePoti5.Adjustment.Upper = 255;
+		this.vscalePoti5.Adjustment.PageIncrement = 10;
+		this.vscalePoti5.Adjustment.StepIncrement = 1;
+		this.vscalePoti5.Adjustment.Value = 15;
+		this.vscalePoti5.DrawValue = false;
+		this.vscalePoti5.Digits = 0;
+		this.vscalePoti5.ValuePos = ((global::Gtk.PositionType)(2));
+		this.vbxPoti5.Add (this.vscalePoti5);
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbxPoti5 [this.vscalePoti5]));
+		w27.Position = 2;
+		// Container child vbxPoti5.Gtk.Box+BoxChild
+		this.lblPoti5 = new global::Gtk.Label ();
+		this.lblPoti5.Name = "lblPoti5";
+		this.lblPoti5.LabelProp = global::Mono.Unix.Catalog.GetString ("Poti5");
+		this.vbxPoti5.Add (this.lblPoti5);
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbxPoti5 [this.lblPoti5]));
+		w28.Position = 3;
+		w28.Expand = false;
+		w28.Fill = false;
+		this.hbxMixer.Add (this.vbxPoti5);
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxPoti5]));
+		w29.Position = 4;
+		w29.Expand = false;
+		w29.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vseparator1 = new global::Gtk.VSeparator ();
+		this.vseparator1.Name = "vseparator1";
+		this.hbxMixer.Add (this.vseparator1);
+		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vseparator1]));
+		w30.Position = 5;
+		w30.Expand = false;
+		w30.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbxDigitals = new global::Gtk.VBox ();
+		this.vbxDigitals.Name = "vbxDigitals";
+		this.vbxDigitals.Spacing = 6;
+		// Container child vbxDigitals.Gtk.Box+BoxChild
+		this.bntD1 = new global::Gtk.ToggleButton ();
+		this.bntD1.CanFocus = true;
+		this.bntD1.Name = "bntD1";
+		this.bntD1.UseUnderline = true;
+		this.bntD1.Label = global::Mono.Unix.Catalog.GetString ("D1");
+		this.vbxDigitals.Add (this.bntD1);
+		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbxDigitals [this.bntD1]));
+		w31.Position = 0;
+		w31.Expand = false;
+		w31.Fill = false;
+		// Container child vbxDigitals.Gtk.Box+BoxChild
+		this.btnD2 = new global::Gtk.ToggleButton ();
+		this.btnD2.CanFocus = true;
+		this.btnD2.Name = "btnD2";
+		this.btnD2.UseUnderline = true;
+		this.btnD2.Label = global::Mono.Unix.Catalog.GetString ("D2");
+		this.vbxDigitals.Add (this.btnD2);
+		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbxDigitals [this.btnD2]));
+		w32.Position = 1;
+		w32.Expand = false;
+		w32.Fill = false;
+		// Container child vbxDigitals.Gtk.Box+BoxChild
+		this.btnD3 = new global::Gtk.ToggleButton ();
+		this.btnD3.CanFocus = true;
+		this.btnD3.Name = "btnD3";
+		this.btnD3.UseUnderline = true;
+		this.btnD3.Label = global::Mono.Unix.Catalog.GetString ("D3");
+		this.vbxDigitals.Add (this.btnD3);
+		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbxDigitals [this.btnD3]));
+		w33.Position = 2;
+		w33.Expand = false;
+		w33.Fill = false;
+		// Container child vbxDigitals.Gtk.Box+BoxChild
+		this.btnD4 = new global::Gtk.ToggleButton ();
+		this.btnD4.CanFocus = true;
+		this.btnD4.Name = "btnD4";
+		this.btnD4.UseUnderline = true;
+		this.btnD4.Label = global::Mono.Unix.Catalog.GetString ("D4");
+		this.vbxDigitals.Add (this.btnD4);
+		global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbxDigitals [this.btnD4]));
+		w34.Position = 3;
+		w34.Expand = false;
+		w34.Fill = false;
+		// Container child vbxDigitals.Gtk.Box+BoxChild
+		this.btnD5 = new global::Gtk.ToggleButton ();
+		this.btnD5.CanFocus = true;
+		this.btnD5.Name = "btnD5";
+		this.btnD5.UseUnderline = true;
+		this.btnD5.Label = global::Mono.Unix.Catalog.GetString ("D5");
+		this.vbxDigitals.Add (this.btnD5);
+		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbxDigitals [this.btnD5]));
+		w35.Position = 4;
+		w35.Expand = false;
+		w35.Fill = false;
+		this.hbxMixer.Add (this.vbxDigitals);
+		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxDigitals]));
+		w36.Position = 6;
+		w36.Expand = false;
+		w36.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vseparator2 = new global::Gtk.VSeparator ();
+		this.vseparator2.Name = "vseparator2";
+		this.hbxMixer.Add (this.vseparator2);
+		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vseparator2]));
+		w37.Position = 7;
+		w37.Expand = false;
+		w37.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.vbxButtons = new global::Gtk.VBox ();
+		this.vbxButtons.Name = "vbxButtons";
+		this.vbxButtons.Spacing = 6;
+		// Container child vbxButtons.Gtk.Box+BoxChild
+		this.btnB1 = new global::Gtk.Button ();
+		this.btnB1.CanFocus = true;
+		this.btnB1.Name = "btnB1";
+		this.btnB1.UseUnderline = true;
+		this.btnB1.Label = global::Mono.Unix.Catalog.GetString ("B1");
+		this.vbxButtons.Add (this.btnB1);
+		global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbxButtons [this.btnB1]));
+		w38.Position = 0;
+		w38.Expand = false;
+		w38.Fill = false;
+		// Container child vbxButtons.Gtk.Box+BoxChild
+		this.btnB2 = new global::Gtk.Button ();
+		this.btnB2.CanFocus = true;
+		this.btnB2.Name = "btnB2";
+		this.btnB2.UseUnderline = true;
+		this.btnB2.Label = global::Mono.Unix.Catalog.GetString ("B2");
+		this.vbxButtons.Add (this.btnB2);
+		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbxButtons [this.btnB2]));
+		w39.Position = 1;
+		w39.Expand = false;
+		w39.Fill = false;
+		// Container child vbxButtons.Gtk.Box+BoxChild
+		this.btnB3 = new global::Gtk.Button ();
+		this.btnB3.CanFocus = true;
+		this.btnB3.Name = "btnB3";
+		this.btnB3.UseUnderline = true;
+		this.btnB3.Label = global::Mono.Unix.Catalog.GetString ("B3");
+		this.vbxButtons.Add (this.btnB3);
+		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbxButtons [this.btnB3]));
+		w40.Position = 2;
+		w40.Expand = false;
+		w40.Fill = false;
+		// Container child vbxButtons.Gtk.Box+BoxChild
+		this.btnB4 = new global::Gtk.Button ();
+		this.btnB4.CanFocus = true;
+		this.btnB4.Name = "btnB4";
+		this.btnB4.UseUnderline = true;
+		this.btnB4.Label = global::Mono.Unix.Catalog.GetString ("B4");
+		this.vbxButtons.Add (this.btnB4);
+		global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbxButtons [this.btnB4]));
+		w41.Position = 3;
+		w41.Expand = false;
+		w41.Fill = false;
+		// Container child vbxButtons.Gtk.Box+BoxChild
+		this.btnB5 = new global::Gtk.Button ();
+		this.btnB5.CanFocus = true;
+		this.btnB5.Name = "btnB5";
+		this.btnB5.UseUnderline = true;
+		this.btnB5.Label = global::Mono.Unix.Catalog.GetString ("B5");
+		this.vbxButtons.Add (this.btnB5);
+		global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.vbxButtons [this.btnB5]));
+		w42.Position = 4;
+		w42.Expand = false;
+		w42.Fill = false;
+		this.hbxMixer.Add (this.vbxButtons);
+		global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.vbxButtons]));
+		w43.Position = 8;
+		w43.Expand = false;
+		w43.Fill = false;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		this.nodeViewAnalogs = new global::Gtk.NodeView ();
+		this.nodeViewAnalogs.CanFocus = true;
+		this.nodeViewAnalogs.Name = "nodeViewAnalogs";
+		this.GtkScrolledWindow.Add (this.nodeViewAnalogs);
+		this.hbxMixer.Add (this.GtkScrolledWindow);
+		global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.GtkScrolledWindow]));
+		w45.Position = 9;
+		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.txtConsole1 = new global::Gtk.ScrolledWindow ();
+		this.txtConsole1.Name = "txtConsole1";
+		this.txtConsole1.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child txtConsole1.Gtk.Container+ContainerChild
+		this.txtConsole = new global::Gtk.TextView ();
+		this.txtConsole.CanFocus = true;
+		this.txtConsole.Name = "txtConsole";
+		this.txtConsole1.Add (this.txtConsole);
+		this.hbxMixer.Add (this.txtConsole1);
+		global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.txtConsole1]));
+		w47.PackType = ((global::Gtk.PackType)(1));
+		w47.Position = 10;
 		this.vbxMain.Add (this.hbxMixer);
-		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
-		w17.Position = 1;
+		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
+		w48.Position = 3;
+		w48.Expand = false;
+		w48.Fill = false;
 		this.Add (this.vbxMain);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultWidth = 646;
+		this.DefaultHeight = 604;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.vscaleSetpoint.ValueChanged += new global::System.EventHandler (this.vScaleSetpoint_Changed);
-		this.vscaleDeadTime.ValueChanged += new global::System.EventHandler (this.vscaleDeadTime_Changed);
-		this.vscaleSpeed.ValueChanged += new global::System.EventHandler (this.vScaleSpeed_Changed);
+		this.btnPotiOnOff1.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
+		this.edPoti1.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
+		this.vscalePoti1.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
+		this.btnPotiOnOff2.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
+		this.edPoti2.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
+		this.vscalePoti2.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
+		this.btnPotiOnOff3.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
+		this.edPoti3.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
+		this.vscalePoti3.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
+		this.btnPotiOnOff4.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
+		this.edPoti4.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
+		this.vscalePoti4.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
+		this.btnPotiOnOff5.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
+		this.edPoti5.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
+		this.vscalePoti5.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
 	}
 }

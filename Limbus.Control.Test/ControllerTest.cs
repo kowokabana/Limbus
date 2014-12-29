@@ -20,7 +20,7 @@ namespace Limbus.Control.Test
 			var receivedSeries = new List<Timestamped<double>>();
 			var t0 = 0.AsMinute();
 			var setpoint = 10.0.At(t0);//.Add(5.min()));
-			var pid = new PIDAlgorithm(0.5, 0.5, 0.5);
+			var pid = new PIDAlgorithm(0.5, 0.5, 0.5, 0.0);
 
 			var mosquito = new LinearMosquito(2.0.In(1.min()), t0);
 			var controlledMosqito = mosquito.ControlledBy(pid);
@@ -50,7 +50,7 @@ namespace Limbus.Control.Test
 				{ Gradient = m.Gradient, Stages = new SortedSet<double>() {0.0, 100.0} }));
 
 			var swarmController = new SwarmController(
-				specifiedSwarm, new PowerBasedAllocator(), new PIDAlgorithm(0.5, 0.5, 0.5));
+				specifiedSwarm, new PowerBasedAllocator(), new PIDAlgorithm(0.5, 0.5, 0.5, 0.0));
 
 			swarmController.Receive += (t) => receivedSeries.Add(t);
 			swarmController.Send(setpoint);
