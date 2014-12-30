@@ -7,12 +7,13 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/Limbus.Lab.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="646 604">
+  <widget class="Gtk.Window" id="MainWindow" design-size="761 604">
     <action-group name="Default">
       <action id="saveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-save</property>
+        <signal name="Activated" handler="btnSave_Clicked" />
       </action>
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -150,7 +151,7 @@
                     <property name="Upper">255</property>
                     <property name="PageIncrement">10</property>
                     <property name="StepIncrement">1</property>
-                    <property name="Value">15</property>
+                    <property name="Value">35</property>
                     <property name="DrawValue">False</property>
                     <property name="Digits">0</property>
                     <property name="ValuePos">Top</property>
@@ -689,38 +690,62 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+              <widget class="Gtk.Notebook" id="nbSettings">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
+                <property name="CanFocus">True</property>
+                <property name="CurrentPage">0</property>
                 <child>
-                  <widget class="Gtk.NodeView" id="nodeViewAnalogs">
+                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                     <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="ShowScrollbars">True</property>
+                    <property name="ShadowType">In</property>
+                    <child>
+                      <widget class="Gtk.TextView" id="txtLabSettings">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="ShowScrollbars">True</property>
+                        <property name="Text" />
+                      </widget>
+                    </child>
                   </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblLabSettings">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Lab.Settings</property>
+                  </widget>
+                  <packing>
+                    <property name="type">tab</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
+                    <property name="MemberName" />
+                    <property name="ShadowType">In</property>
+                    <child>
+                      <widget class="Gtk.TextView" id="txtArduinoSettings">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="ShowScrollbars">True</property>
+                        <property name="Text" translatable="yes" />
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblArduinoSettings">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Arduino.Settings</property>
+                  </widget>
+                  <packing>
+                    <property name="type">tab</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
                 <property name="Position">9</property>
-                <property name="AutoSize">True</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.ScrolledWindow" id="txtConsole1">
-                <property name="MemberName" />
-                <property name="ShadowType">In</property>
-                <child>
-                  <widget class="Gtk.TextView" id="txtConsole">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="ShowScrollbars">True</property>
-                    <property name="Text" translatable="yes" />
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="PackType">End</property>
-                <property name="Position">10</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
