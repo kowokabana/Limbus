@@ -21,7 +21,7 @@ namespace Limbus.Plot
 		{
 			this.Lines[0].Points.Add(DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, point.Value));
 			this.Lines[1].Points.Add(DateTimeAxis.CreateDataPoint (point.Timestamp.UtcDateTime, setpoint));
-			if (this.Lines[0].Points.Count > width) this.Lines.ForEach(l => l.Points.RemoveAt(0));				
+			if (this.Lines[0].Points.Count > width) this.Lines.ForEach(l => l.Points.RemoveAt(0));
 		}
 
 		public void AddSetpoint(double setpoint)
@@ -42,7 +42,11 @@ namespace Limbus.Plot
 					Position = AxisPosition.Left,
 					MajorGridlineStyle = LineStyle.Solid,
 					MinorGridlineStyle = LineStyle.Dot,
-					TickStyle = TickStyle.Outside
+					TickStyle = TickStyle.Outside,
+					Maximum = 500, // limits the max of the y axis
+					Minimum = 0,
+					AbsoluteMaximum = 500, // limits the max of the y axis
+					AbsoluteMinimum = 0
 				});
 
 			this.TimeAxis = new DateTimeAxis {

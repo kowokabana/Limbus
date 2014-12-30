@@ -54,12 +54,12 @@ namespace Limbus.Arduino
 				{
 					string message = port.ReadLine();
 					if(!message.StartsWith(name)) continue;
-					var valStr= message.Substring(name.Length + 1);
+					var valStr = message.Substring(name.Length);
 					double val = 0.0;
 					if(!double.TryParse(valStr, out val)) continue;
-					if (Receive != null) Receive(val.At(DateTimeOffset.UtcNow));
+					if (Receive != null) Receive((val-100).At(DateTimeOffset.UtcNow));
 					port.DiscardInBuffer();
-					Thread.Sleep(100);
+					Thread.Sleep(200);
 				}
 				catch (TimeoutException ex)
 				{

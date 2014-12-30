@@ -30,7 +30,7 @@ public partial class MainWindow: Gtk.Window
 		//nodeViewAnalogs.ShowAll ();
 
 		var t0 = DateTimeOffset.UtcNow;
-		timePlot = new TimePlot("Plot", 50, t0);
+		timePlot = new TimePlot("Plot", 200, t0);
 		//HostPID(t0, timePlot);
 
 		var arduino = new Driver();
@@ -115,7 +115,7 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	protected void btnPotiOnOff_Toggled (object sender, EventArgs e)
+	protected void btnPotiOnOff_Toggled(object sender, EventArgs e)
 	{
 		var widget = sender as Gtk.Widget;
 		if (widget == null) return;
