@@ -108,8 +108,8 @@ public partial class MainWindow: Gtk.Window
 		edPoti4.Text = vscalePoti4.Value.ToString();
 		edPoti5.Text = vscalePoti5.Value.ToString();
 
-		double val = Math.Floor(double.Parse(edPoti1.Text));
-		potVal.Send(val.At(DateTimeOffset.UtcNow));
+		//double val = Math.Floor(double.Parse(edPoti1.Text));
+		//potVal.Send(val.At(DateTimeOffset.UtcNow));
 	}
 
 	protected void vScaleSpeed_Changed(object sender, EventArgs e)

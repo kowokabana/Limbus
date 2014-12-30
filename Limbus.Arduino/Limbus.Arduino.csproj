@@ -42,6 +42,7 @@
     <Compile Include="Pin.cs" />
     <None Include="packages.config" />
     <Compile Include="Settings.cs" />
+    <None Include="Uno.ino" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
