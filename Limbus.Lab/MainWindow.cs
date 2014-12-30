@@ -12,6 +12,10 @@ using MoreLinq;
 using Limbus.Control;
 using Limbus.API;
 using Limbus.Arduino;
+using ServiceStack;
+using System.IO;
+using Limbus.Lab;
+using Limbus.Serialization;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -21,25 +25,59 @@ public partial class MainWindow: Gtk.Window
 	private int speed = 1000;
 	private TimePlot timePlot;
 
-	public MainWindow () : base (Gtk.WindowType.Toplevel)
+	private IControllable<double> potVal;
+
+	private void ApplyLabSettings(Limbus.Lab.Settings settings)
 	{
-		Build();
+		this.lblPoti1.Text = settings.Poti1;
+		this.lblPoti2.Text = settings.Poti2;
+		this.lblPoti3.Text = settings.Poti3;
+		this.lblPoti4.Text = settings.Poti4;
+		this.lblPoti5.Text = settings.Poti5;
 
-		//nodeViewAnalogs.AppendColumn ("Artist", new Gtk.CellRendererText (), "text", 0);
-		//nodeViewAnalogs.AppendColumn ("Song Title", new Gtk.CellRendererText (), "text", 1);
-		//nodeViewAnalogs.ShowAll ();
+		this.vscalePoti1.Adjustment.Upper = settings.PotiMax;
+		this.vscalePoti1.Adjustment.Lower = settings.PotiMin;
 
-		var t0 = DateTimeOffset.UtcNow;
-		timePlot = new TimePlot("Plot", 200, t0);
-		//HostPID(t0, timePlot);
+		this.vscalePoti2.Adjustment.Upper = settings.PotiMax;
+		this.vscalePoti2.Adjustment.Lower = settings.PotiMin;
 
-		var arduino = new Driver();
-		var potVal = arduino.AddPin("potVal: ");
+		this.vscalePoti3.Adjustment.Upper = settings.PotiMax;
+		this.vscalePoti3.Adjustment.Lower = settings.PotiMin;
 
+		this.vscalePoti4.Adjustment.Upper = settings.PotiMax;
+		this.vscalePoti4.Adjustment.Lower = settings.PotiMin;
+
+		this.vscalePoti5.Adjustment.Upper = settings.PotiMax;
+		this.vscalePoti5.Adjustment.Lower = settings.PotiMin;
+
+		timePlot = new TimePlot("Oscilloscope", settings.PlotWidth, settings.PlotHeight, DateTimeOffset.UtcNow);
+
+		var labSettingsText = settings.ToJson()
+			.Replace(",", ",\n").Replace("{", "{\n").Replace("}","\n}");
+		txtLabSettings.Buffer.Text = labSettingsText;
+	}
+
+	private void ApplyArduinoSettings(Limbus.Arduino.Settings settings, Limbus.Arduino.Driver arduino)
+	{
+		potVal = arduino.AddPin(settings.AnalogIn1);
 		potVal.Receive += (ts) => {
 			this.timePlot.AddActual(ts);
 			this.timePlot.InvalidatePlot(true);
 		};
+
+		arduino.Connect(settings.SerialPort, 9600);
+
+		var arduinoSettings = settings.ToJson()
+			.Replace(",", ",\n").Replace("{", "{\n").Replace("}","\n}");
+		txtArduinoSettings.Buffer.Text = arduinoSettings;
+	}
+
+	public MainWindow () : base (Gtk.WindowType.Toplevel)
+	{
+		Build();
+		ApplyLabSettings(JSON.Load<Limbus.Lab.Settings>());
+		ApplyArduinoSettings(JSON.Load<Limbus.Arduino.Settings>(), new Limbus.Arduino.Driver());
+		//HostPID(t0, timePlot);
 		
 		var timePlotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
 		timePlotView.SetSizeRequest(1000, 200);
@@ -47,8 +85,6 @@ public partial class MainWindow: Gtk.Window
 
 		this.SetSizeRequest(1000, 600);
 		vbxPlot.Add(timePlotView);
-
-		arduino.Connect("/dev/tty.usbmodem1421", 9600);
 	}
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -71,6 +107,9 @@ public partial class MainWindow: Gtk.Window
 		edPoti3.Text = vscalePoti3.Value.ToString();
 		edPoti4.Text = vscalePoti4.Value.ToString();
 		edPoti5.Text = vscalePoti5.Value.ToString();
+
+		double val = Math.Floor(double.Parse(edPoti1.Text));
+		potVal.Send(val.At(DateTimeOffset.UtcNow));
 	}
 
 	protected void vScaleSpeed_Changed(object sender, EventArgs e)
@@ -166,5 +205,13 @@ public partial class MainWindow: Gtk.Window
 		double parsed;
 		if (!double.TryParse(text, out parsed)) return default(double);
 		return parsed;
+	}
+
+	protected void btnSave_Clicked(object sender, EventArgs e)
+	{
+		var json = txtLabSettings.Buffer.Text;
+		var labSettings = json.FromJson<Limbus.Lab.Settings>();
+		ApplyLabSettings(labSettings);
+		labSettings.Save();
 	}
 }

@@ -35,12 +35,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Spec", "Limbus.Spec\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Arduino", "Limbus.Arduino\Limbus.Arduino.csproj", "{B5AC49C1-8695-4A93-AB34-6D958B5B69F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbus.Serialization", "Limbus.Serialization\Limbus.Serialization.csproj", "{01DFD801-E31B-4151-A58D-BFB44D94587B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01DFD801-E31B-4151-A58D-BFB44D94587B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{01DFD801-E31B-4151-A58D-BFB44D94587B}.Debug|x86.Build.0 = Debug|Any CPU
+		{01DFD801-E31B-4151-A58D-BFB44D94587B}.Release|x86.ActiveCfg = Release|Any CPU
+		{01DFD801-E31B-4151-A58D-BFB44D94587B}.Release|x86.Build.0 = Release|Any CPU
 		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Debug|x86.Build.0 = Debug|Any CPU
 		{132F6813-4862-45A8-800C-A6CA561CA3EB}.Release|x86.ActiveCfg = Release|Any CPU

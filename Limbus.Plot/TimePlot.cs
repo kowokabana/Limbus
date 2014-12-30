@@ -29,7 +29,7 @@ namespace Limbus.Plot
 			this.setpoint = setpoint;
 		}
 
-		public TimePlot (string title, int width, DateTimeOffset start)
+		public TimePlot(string title, int width, int height, DateTimeOffset start)
 			: base (title)
 		{
 			if (width < 0) throw new ArgumentException ("width");
@@ -43,9 +43,9 @@ namespace Limbus.Plot
 					MajorGridlineStyle = LineStyle.Solid,
 					MinorGridlineStyle = LineStyle.Dot,
 					TickStyle = TickStyle.Outside,
-					Maximum = 500, // limits the max of the y axis
+					Maximum = height, // limits the max of the y axis
 					Minimum = 0,
-					AbsoluteMaximum = 500, // limits the max of the y axis
+					AbsoluteMaximum = height, // limits the max of the y axis
 					AbsoluteMinimum = 0
 				});
 

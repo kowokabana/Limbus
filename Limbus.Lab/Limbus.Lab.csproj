@@ -59,6 +59,9 @@
       <HintPath>..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.34\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -71,6 +74,7 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -100,6 +104,10 @@
     <ProjectReference Include="..\Limbus.Arduino\Limbus.Arduino.csproj">
       <Project>{B5AC49C1-8695-4A93-AB34-6D958B5B69F1}</Project>
       <Name>Limbus.Arduino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Limbus.Serialization\Limbus.Serialization.csproj">
+      <Project>{01DFD801-E31B-4151-A58D-BFB44D94587B}</Project>
+      <Name>Limbus.Serialization</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

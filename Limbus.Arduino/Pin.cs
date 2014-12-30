@@ -43,7 +43,8 @@ namespace Limbus.Arduino
 
 		public void Send(Timestamped<double> setpoint)
 		{
-			this.port.Write(name += ": " + setpoint.Value.ToString());
+			var val = setpoint.Value.ToString() + ";";
+			this.port.Write(val);
 		}
 
 		private void Read()

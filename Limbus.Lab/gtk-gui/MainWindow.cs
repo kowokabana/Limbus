@@ -105,13 +105,19 @@ public partial class MainWindow
 	
 	private global::Gtk.Button btnB5;
 	
+	private global::Gtk.Notebook nbSettings;
+	
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	
-	private global::Gtk.NodeView nodeViewAnalogs;
+	private global::Gtk.TextView txtLabSettings;
 	
-	private global::Gtk.ScrolledWindow txtConsole1;
+	private global::Gtk.Label lblLabSettings;
 	
-	private global::Gtk.TextView txtConsole;
+	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
+	
+	private global::Gtk.TextView txtArduinoSettings;
+	
+	private global::Gtk.Label lblArduinoSettings;
 
 	protected virtual void Build ()
 	{
@@ -214,7 +220,7 @@ public partial class MainWindow
 		this.vscalePoti1.Adjustment.Upper = 255;
 		this.vscalePoti1.Adjustment.PageIncrement = 10;
 		this.vscalePoti1.Adjustment.StepIncrement = 1;
-		this.vscalePoti1.Adjustment.Value = 15;
+		this.vscalePoti1.Adjustment.Value = 35;
 		this.vscalePoti1.DrawValue = false;
 		this.vscalePoti1.Digits = 0;
 		this.vscalePoti1.ValuePos = ((global::Gtk.PositionType)(2));
@@ -615,43 +621,61 @@ public partial class MainWindow
 		w43.Expand = false;
 		w43.Fill = false;
 		// Container child hbxMixer.Gtk.Box+BoxChild
+		this.nbSettings = new global::Gtk.Notebook ();
+		this.nbSettings.CanFocus = true;
+		this.nbSettings.Name = "nbSettings";
+		this.nbSettings.CurrentPage = 0;
+		// Container child nbSettings.Gtk.Notebook+NotebookChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.nodeViewAnalogs = new global::Gtk.NodeView ();
-		this.nodeViewAnalogs.CanFocus = true;
-		this.nodeViewAnalogs.Name = "nodeViewAnalogs";
-		this.GtkScrolledWindow.Add (this.nodeViewAnalogs);
-		this.hbxMixer.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.GtkScrolledWindow]));
-		w45.Position = 9;
-		// Container child hbxMixer.Gtk.Box+BoxChild
-		this.txtConsole1 = new global::Gtk.ScrolledWindow ();
-		this.txtConsole1.Name = "txtConsole1";
-		this.txtConsole1.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child txtConsole1.Gtk.Container+ContainerChild
-		this.txtConsole = new global::Gtk.TextView ();
-		this.txtConsole.CanFocus = true;
-		this.txtConsole.Name = "txtConsole";
-		this.txtConsole1.Add (this.txtConsole);
-		this.hbxMixer.Add (this.txtConsole1);
-		global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.txtConsole1]));
-		w47.PackType = ((global::Gtk.PackType)(1));
-		w47.Position = 10;
+		this.txtLabSettings = new global::Gtk.TextView ();
+		this.txtLabSettings.CanFocus = true;
+		this.txtLabSettings.Name = "txtLabSettings";
+		this.GtkScrolledWindow.Add (this.txtLabSettings);
+		this.nbSettings.Add (this.GtkScrolledWindow);
+		// Notebook tab
+		this.lblLabSettings = new global::Gtk.Label ();
+		this.lblLabSettings.Name = "lblLabSettings";
+		this.lblLabSettings.LabelProp = global::Mono.Unix.Catalog.GetString ("Lab.Settings");
+		this.nbSettings.SetTabLabel (this.GtkScrolledWindow, this.lblLabSettings);
+		this.lblLabSettings.ShowAll ();
+		// Container child nbSettings.Gtk.Notebook+NotebookChild
+		this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
+		this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
+		this.txtArduinoSettings = new global::Gtk.TextView ();
+		this.txtArduinoSettings.CanFocus = true;
+		this.txtArduinoSettings.Name = "txtArduinoSettings";
+		this.GtkScrolledWindow1.Add (this.txtArduinoSettings);
+		this.nbSettings.Add (this.GtkScrolledWindow1);
+		global::Gtk.Notebook.NotebookChild w47 = ((global::Gtk.Notebook.NotebookChild)(this.nbSettings [this.GtkScrolledWindow1]));
+		w47.Position = 1;
+		// Notebook tab
+		this.lblArduinoSettings = new global::Gtk.Label ();
+		this.lblArduinoSettings.Name = "lblArduinoSettings";
+		this.lblArduinoSettings.LabelProp = global::Mono.Unix.Catalog.GetString ("Arduino.Settings");
+		this.nbSettings.SetTabLabel (this.GtkScrolledWindow1, this.lblArduinoSettings);
+		this.lblArduinoSettings.ShowAll ();
+		this.hbxMixer.Add (this.nbSettings);
+		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.hbxMixer [this.nbSettings]));
+		w48.Position = 9;
 		this.vbxMain.Add (this.hbxMixer);
-		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
-		w48.Position = 3;
-		w48.Expand = false;
-		w48.Fill = false;
+		global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.vbxMain [this.hbxMixer]));
+		w49.Position = 3;
+		w49.Expand = false;
+		w49.Fill = false;
 		this.Add (this.vbxMain);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 646;
+		this.DefaultWidth = 761;
 		this.DefaultHeight = 604;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.saveAction.Activated += new global::System.EventHandler (this.btnSave_Clicked);
 		this.btnPotiOnOff1.Toggled += new global::System.EventHandler (this.btnPotiOnOff_Toggled);
 		this.edPoti1.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.edPoti_KeyReleased);
 		this.vscalePoti1.ValueChanged += new global::System.EventHandler (this.vScalePoti_Changed);
