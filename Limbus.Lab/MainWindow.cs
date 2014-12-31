@@ -24,10 +24,11 @@ public partial class MainWindow: Gtk.Window
 	private Clock clock;
 	private int speed = 1000;
 	private TimePlot timePlot;
+	private OxyPlot.GtkSharp.PlotView timePlotView;
 
-	private IControllable<double> potVal;
+	private IControllable<double> pin1;
 
-	private void ApplyLabSettings(Limbus.Lab.Settings settings)
+	private void Apply(Limbus.Lab.Settings settings)
 	{
 		this.lblPoti1.Text = settings.Poti1;
 		this.lblPoti2.Text = settings.Poti2;
@@ -50,22 +51,28 @@ public partial class MainWindow: Gtk.Window
 		this.vscalePoti5.Adjustment.Upper = settings.PotiMax;
 		this.vscalePoti5.Adjustment.Lower = settings.PotiMin;
 
+		vbxPlot.Remove(timePlotView);
 		timePlot = new TimePlot("Oscilloscope", settings.PlotWidth, settings.PlotHeight, DateTimeOffset.UtcNow);
+		timePlotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
+		timePlotView.SetSizeRequest(1000, 200);
+		timePlotView.Visible = true;
+		this.SetSizeRequest(1000, 600);
+		vbxPlot.Add(timePlotView);
 
 		var labSettingsText = settings.ToJson()
 			.Replace(",", ",\n").Replace("{", "{\n").Replace("}","\n}");
 		txtLabSettings.Buffer.Text = labSettingsText;
 	}
 
-	private void ApplyArduinoSettings(Limbus.Arduino.Settings settings, Limbus.Arduino.Driver arduino)
+	private void Apply(Limbus.Arduino.Settings settings, Limbus.Arduino.Driver arduino)
 	{
-		potVal = arduino.AddPin(settings.AnalogIn1);
-		potVal.Receive += (ts) => {
+		pin1 = arduino.AddPinPair(settings.AnalogIn0, settings.AnalogOut9);
+		pin1.Receive += (ts) => {
 			this.timePlot.AddActual(ts);
 			this.timePlot.InvalidatePlot(true);
 		};
 
-		arduino.Connect(settings.SerialPort, 9600);
+		arduino.Connect(settings.SerialPort, settings.BaudRate);
 
 		var arduinoSettings = settings.ToJson()
 			.Replace(",", ",\n").Replace("{", "{\n").Replace("}","\n}");
@@ -75,16 +82,9 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build();
-		ApplyLabSettings(JSON.Load<Limbus.Lab.Settings>());
-		ApplyArduinoSettings(JSON.Load<Limbus.Arduino.Settings>(), new Limbus.Arduino.Driver());
+		Apply(JSON.Load<Limbus.Lab.Settings>());
+		Apply(JSON.Load<Limbus.Arduino.Settings>(), new Limbus.Arduino.Driver());
 		//HostPID(t0, timePlot);
-		
-		var timePlotView = new OxyPlot.GtkSharp.PlotView { Model = timePlot };
-		timePlotView.SetSizeRequest(1000, 200);
-		timePlotView.Visible = true;
-
-		this.SetSizeRequest(1000, 600);
-		vbxPlot.Add(timePlotView);
 	}
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -211,7 +211,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		var json = txtLabSettings.Buffer.Text;
 		var labSettings = json.FromJson<Limbus.Lab.Settings>();
-		ApplyLabSettings(labSettings);
+		Apply(labSettings);
 		labSettings.Save();
 	}
 }

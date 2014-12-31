@@ -180,6 +180,7 @@ public partial class MainWindow
 		w4.Position = 2;
 		// Container child vbxMain.Gtk.Box+BoxChild
 		this.hbxMixer = new global::Gtk.HBox ();
+		this.hbxMixer.HeightRequest = 250;
 		this.hbxMixer.Name = "hbxMixer";
 		this.hbxMixer.Spacing = 6;
 		// Container child hbxMixer.Gtk.Box+BoxChild

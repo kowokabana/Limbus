@@ -53,7 +53,7 @@
         <child>
           <widget class="Gtk.MenuBar" id="menubar2">
             <property name="MemberName" />
-            <node name="__gtksharp_167_Stetic_Editor_ActionMenuBar" type="Menubar">
+            <node name="menubar2" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menuitem" action="OpenAction" />
                 <node type="Menuitem" action="SaveAction" />
@@ -73,7 +73,7 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="__gtksharp_168_Stetic_Editor_ActionToolbar" type="Toolbar">
+            <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="saveAction" />
             </node>
           </widget>
@@ -103,6 +103,7 @@
         <child>
           <widget class="Gtk.HBox" id="hbxMixer">
             <property name="MemberName" />
+            <property name="HeightRequest">250</property>
             <property name="Spacing">6</property>
             <child>
               <widget class="Gtk.VBox" id="vbxPoti1">

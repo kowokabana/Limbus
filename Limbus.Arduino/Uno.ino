@@ -2,18 +2,18 @@
 
 void setup() {
 	Serial.begin(9600);
-	pinMode(2, OUTPUT); // DigOut1
+	pinMode(2, OUTPUT); // DigOut2
 	pinMode(3, OUTPUT); // ~PWM
-	pinMode(4, OUTPUT); // DigOut2
+	pinMode(4, OUTPUT); // DigOut4
 	pinMode(5, OUTPUT); // ~PWM
 	pinMode(6, OUTPUT); // ~PWM
-	pinMode(7, OUTPUT); // DigOut3
-	pinMode(8, INPUT); // DigIn1
+	pinMode(7, OUTPUT); // DigOut7
+	pinMode(8, INPUT); // DigIn8
 	pinMode(9, OUTPUT); // //~PWM
 	pinMode(10, OUTPUT); // ~PWM
 	pinMode(11, OUTPUT); // ~PWM
-	pinMode(12, INPUT); //DigIn2
-	pinMode(13, INPUT); //DigIn3
+	pinMode(12, INPUT); //DigIn12
+	pinMode(13, INPUT); //DigIn13
 }
 
 void printAnalogs()
