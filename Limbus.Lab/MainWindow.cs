@@ -16,6 +16,7 @@ using ServiceStack;
 using System.IO;
 using Limbus.Lab;
 using Limbus.Serialization;
+using System.Collections.Generic;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -26,7 +27,7 @@ public partial class MainWindow: Gtk.Window
 	private TimePlot timePlot;
 	private OxyPlot.GtkSharp.PlotView timePlotView;
 
-	private IControllable<double> pin1;
+	private Dictionary<string, IControllable<double>> pinPairs = new Dictionary<string, IControllable<double>>();
 
 	private void Apply(Limbus.Lab.Settings settings)
 	{
@@ -64,13 +65,26 @@ public partial class MainWindow: Gtk.Window
 		txtLabSettings.Buffer.Text = labSettingsText;
 	}
 
-	private void Apply(Limbus.Arduino.Settings settings, Limbus.Arduino.Driver arduino)
+	private void AddPinPair(string inPin, string outPin, Limbus.Arduino.Driver arduino)
 	{
-		pin1 = arduino.AddPinPair(settings.AnalogIn0, settings.AnalogOut9);
-		pin1.Receive += (ts) => {
-			this.timePlot.AddActual(ts);
+		var name = inPin + outPin;
+		var pinPair = arduino.AddPinPair(inPin, outPin);
+
+		pinPair.Receive += (ts) => {
+			this.timePlot.AddActual(inPin, ts);
 			this.timePlot.InvalidatePlot(true);
 		};
+
+		pinPairs.Add(name, pinPair);
+		timePlot.AddActualLine(inPin);
+		timePlot.AddSetpointLine(outPin);
+	}
+
+	private void Apply(Limbus.Arduino.Settings settings, Limbus.Arduino.Driver arduino)
+	{
+		AddPinPair(settings.AnalogIn0, settings.AnalogOut9, arduino);
+		AddPinPair(settings.AnalogIn1, settings.AnalogOut10, arduino);
+		AddPinPair(settings.AnalogIn2, settings.AnalogOut11, arduino);
 
 		arduino.Connect(settings.SerialPort, settings.BaudRate);
 
@@ -95,9 +109,9 @@ public partial class MainWindow: Gtk.Window
 
 	protected void vScaleSetpoint_Changed(object sender, EventArgs e)
 	{
-		var setpoint = vscalePoti1.Value.At(clock.Time);//.At(clock.Time);
-		controlledMock.Send(setpoint);
-		this.timePlot.AddSetpoint(setpoint.Value);//.Value);
+		//var setpoint = vscalePoti1.Value.At(clock.Time);//.At(clock.Time);
+		//controlledMock.Send(setpoint);
+		//this.timePlot.AddSetpoint(setpoint.Value);//.Value);
 	}
 
 	protected void vScalePoti_Changed(object sender, EventArgs e)
@@ -122,29 +136,29 @@ public partial class MainWindow: Gtk.Window
 		//mock.Send(Timestamped.Create(vscaleSetpoint.Value, clock.Time.Add(vscaleDeadTime.Value.min())));
 	}
 
-	private void HostPID(DateTimeOffset t0, TimePlot timeplot)
-	{
-		var linearMock = new LinearMosquito(10.0.In(1.min()), DateTimeOffset.UtcNow);
-		controlledMock = linearMock.ControlledBy(new PIDAlgorithm(0.5, 0.5, 0, 0));//WithDelay(5.min());
-
-		clock = new Clock(t0);
-		clock.Subscribe(linearMock);
-		//clock.Subscribe(delayedMock);
-
-		// this stuff runs in another task
-		linearMock.Receive += (ts) => {
-			timePlot.AddActual(ts);
-			timePlot.InvalidatePlot(true);
-		};
-
-		Task.Run (() => {
-			while(true)
-			{
-				clock.Tick (1.min());
-				Thread.Sleep (speed);
-			}
-		});
-	}
+//	private void HostPID(DateTimeOffset t0, TimePlot timeplot)
+//	{
+//		var linearMock = new LinearMosquito(10.0.In(1.min()), DateTimeOffset.UtcNow);
+//		controlledMock = linearMock.ControlledBy(new PIDAlgorithm(0.5, 0.5, 0, 0));//WithDelay(5.min());
+//
+//		clock = new Clock(t0);
+//		clock.Subscribe(linearMock);
+//		//clock.Subscribe(delayedMock);
+//
+//		// this stuff runs in another task
+//		linearMock.Receive += (ts) => {
+//			timePlot.AddActual(ts);
+//			timePlot.InvalidatePlot(true);
+//		};
+//
+//		Task.Run (() => {
+//			while(true)
+//			{
+//				clock.Tick (1.min());
+//				Thread.Sleep (speed);
+//			}
+//		});
+//	}
 
 	protected void edPoti_KeyReleased (object o, KeyReleaseEventArgs args)
 	{
