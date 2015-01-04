@@ -114,11 +114,11 @@ namespace Limbus.Plot
 
 			this.Axes.Add(TimeAxis);
 
-			AddActualLine("DummyLine");
+			//AddActualLine("DummyLine");
 
-			for (int i = 0; i <= width; i++) {
-				ActualLines.ForEach(l => AddActual(l.Title, (0.0.At(start.AddMinutes(-width).AddMinutes(i)))));
-			}
+			//for (int i = 0; i <= width; i++) {
+			//	ActualLines.ForEach(l => AddActual(l.Title, (0.0.At(start.AddMinutes(-width).AddMinutes(i)))));
+			//}
 		}
 	}
 }

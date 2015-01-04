@@ -97,7 +97,9 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build();
 		Apply(JSON.Load<Limbus.Lab.Settings>());
-		Apply(JSON.Load<Limbus.Arduino.Settings>(), new Limbus.Arduino.Driver());
+		var driver = new Limbus.Arduino.Driver();
+		Apply(JSON.Load<Limbus.Arduino.Settings>(), driver);
+		driver.StartReading();
 		//HostPID(t0, timePlot);
 	}
 

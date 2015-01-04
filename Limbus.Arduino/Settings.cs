@@ -35,8 +35,8 @@ namespace Limbus.Arduino
 			SerialPort = "/dev/tty.usbmodem1421";
 			BaudRate = 9600;
 
-			AnalogIn0 = "A0:";
-			AnalogIn1 = "A1:";
+			AnalogIn0 = "us:";
+			AnalogIn1 = "us2:";
 			AnalogIn2 = "A2:";
 			AnalogIn3 = "A3:";
 			AnalogIn4 = "A4:";
